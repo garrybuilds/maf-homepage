@@ -35,6 +35,7 @@
       --shadow-md: 0 4px 6px rgba(50,50,93,0.11), 0 1px 3px rgba(0,0,0,0.08);
       --shadow-lg: 0 10px 25px rgba(50,50,93,0.15), 0 4px 10px rgba(0,0,0,0.06);
       --shadow-xl: 0 20px 50px rgba(50,50,93,0.2), 0 8px 20px rgba(0,0,0,0.08);
+      --shadow-hero: 0 30px 80px -12px rgba(50,50,93,0.25), 0 12px 24px rgba(0,0,0,0.06);
       --radius: 6px; --radius-sm: 4px; --radius-lg: 8px; --radius-xl: 12px;
       --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
       --font-serif: Georgia, 'Times New Roman', serif;
@@ -51,6 +52,7 @@
       --shadow-md: 0 4px 6px rgba(0,0,0,0.4);
       --shadow-lg: 0 10px 25px rgba(0,0,0,0.5);
       --shadow-xl: 0 20px 50px rgba(0,0,0,0.6);
+      --shadow-hero: 0 30px 80px -12px rgba(0,0,0,0.5), 0 12px 24px rgba(0,0,0,0.3);
     }
 
     html { scroll-behavior: smooth; }
@@ -58,6 +60,11 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
       .reveal { opacity: 1 !important; transform: none !important; }
+      .hero-anim { opacity: 1 !important; transform: none !important; }
+      .scorecard-card { animation: none !important; }
+      .radar-poly { animation: none !important; stroke-dashoffset: 0 !important; }
+      .radar-dot, .radar-dot-constraint { animation: none !important; opacity: 1 !important; }
+      .mesh-blob { animation: none !important; }
     }
 
     body {
@@ -83,11 +90,11 @@
       border-radius: var(--radius-sm); z-index: 200; font-weight: 500;
       transition: top 0.2s;
     }
-    .skip-link:focus { top: 8px; }
+    .skip-link:focus { top: 16px; }
 
     /* ── Typography ── */
-    h1, h2 { font-family: var(--font-serif); font-weight: 400; line-height: 1.15; color: var(--heading); }
-    h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); letter-spacing: -0.035em; }
+    h1, h2 { font-family: var(--font-serif); font-weight: 400; line-height: 1.1; color: var(--heading); }
+    h1 { font-size: clamp(2.6rem, 6.5vw, 4.5rem); letter-spacing: -0.035em; }
     h2 { font-size: clamp(1.6rem, 3.5vw, 2.1rem); letter-spacing: -0.02em; }
     h1 em, h2 em { font-style: italic; color: var(--terracotta); font-weight: 400; }
     h3 { font-family: var(--font-sans); font-weight: 500; font-size: 1.15rem; color: var(--heading); letter-spacing: -0.01em; }
@@ -101,40 +108,53 @@
     /* ── Buttons ── */
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
-      padding: 11px 22px; border-radius: var(--radius-sm);
+      padding: 12px 24px; border-radius: var(--radius-sm);
       font-family: var(--font-sans); font-weight: 500; font-size: 0.9rem;
       cursor: pointer; transition: all 0.13s; border: none; text-align: center;
     }
     .btn-primary { background: var(--purple); color: #fff; }
-    .btn-primary:hover { background: var(--purple-hover); color: #fff; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-primary:hover { background: var(--purple-hover); color: #fff; transform: translateY(-2px); box-shadow: var(--shadow-md); }
     .btn-primary:active { transform: translateY(0); }
     .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--heading); }
     .btn-outline:hover { border-color: var(--purple); color: var(--purple); }
-    .btn-lg { padding: 14px 32px; font-size: 1rem; }
+    .btn-lg { padding: 15px 34px; font-size: 1rem; }
     .btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
     .nav-link:focus-visible, .footer-links a:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; border-radius: 2px; }
 
-    /* ── Nav ── */
+    /* ── Floating Pill Nav ── */
     .nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(250,249,247,0.88); backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      border-bottom: 1px solid var(--border); padding: 14px 0;
+      padding: 16px 0;
     }
-    [data-theme="dark"] .nav { background: rgba(26,23,20,0.88); }
-    .nav .container { display: flex; justify-content: space-between; align-items: center; }
+    .nav-pill {
+      background: rgba(250,249,247,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(236,232,224,0.6);
+      border-radius: 100px; padding: 10px 14px 10px 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1080px; margin: 0 auto;
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .nav-pill:hover { box-shadow: var(--shadow-md); }
+    [data-theme="dark"] .nav-pill {
+      background: rgba(46,41,37,0.72);
+      border-color: rgba(255,255,255,0.08);
+    }
     .nav-logo { font-weight: 600; font-size: 1rem; color: var(--heading); letter-spacing: -0.02em; }
     .nav-logo span { color: var(--purple); font-weight: 400; }
-    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
     .nav-link {
       font-size: 0.85rem; color: var(--text); font-weight: 500; transition: color 0.2s;
+      padding: 6px 12px; border-radius: 100px;
     }
-    .nav-link:hover { color: var(--purple); }
+    .nav-link:hover { color: var(--purple); background: rgba(83,58,253,0.06); }
+    [data-theme="dark"] .nav-link:hover { background: rgba(113,112,255,0.08); }
     @media (max-width: 640px) { .nav-link { display: none; } }
 
     .theme-toggle {
-      background: none; border: 1px solid var(--border); border-radius: var(--radius);
-      color: var(--text); cursor: pointer; width: 44px; height: 44px;
+      background: none; border: 1px solid var(--border); border-radius: 100px;
+      color: var(--text); cursor: pointer; width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
       transition: all 0.25s;
     }
@@ -146,51 +166,111 @@
     [data-theme="light"] .icon-sun { display: none; }
     [data-theme="light"] .icon-moon { display: block; }
 
-    /* ── Hero (split layout) ── */
+    .nav-cta {
+      padding: 8px 18px; border-radius: 100px;
+      font-family: var(--font-sans); font-weight: 500; font-size: 0.85rem;
+      background: var(--purple); color: #fff; transition: all 0.13s;
+    }
+    .nav-cta:hover { background: var(--purple-hover); color: #fff; transform: translateY(-1px); }
+
+    /* ── Hero ── */
     .hero {
-      padding: 80px 0 100px; position: relative; overflow: hidden;
+      padding: 60px 0 120px; position: relative; overflow: hidden;
+      min-height: 90vh; display: flex; align-items: center;
     }
-    [data-theme="light"] .hero { background: linear-gradient(165deg, #faf9f7 0%, #f5f0e8 50%, #faf9f7 100%); }
+    [data-theme="light"] .hero { background: #faf9f7; }
     [data-theme="dark"] .hero { background: var(--bg); }
-    .hero::before {
-      content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
-      background: radial-gradient(ellipse at 65% 35%, rgba(139,105,20,0.07) 0%, transparent 50%),
-                  radial-gradient(ellipse at 35% 70%, rgba(83,58,253,0.04) 0%, transparent 50%);
-      pointer-events: none;
+
+    /* Animated mesh gradient background */
+    .hero-mesh {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
     }
+    .mesh-blob {
+      position: absolute; border-radius: 50%; filter: blur(60px);
+      opacity: 0.8; will-change: transform;
+    }
+    .mesh-blob-1 {
+      width: 600px; height: 600px; top: -15%; right: -8%;
+      background: radial-gradient(circle, rgba(139,105,20,0.45) 0%, transparent 70%);
+      animation: blobFloat1 20s ease-in-out infinite;
+    }
+    .mesh-blob-2 {
+      width: 700px; height: 700px; bottom: -20%; left: -12%;
+      background: radial-gradient(circle, rgba(83,58,253,0.22) 0%, transparent 70%);
+      animation: blobFloat2 25s ease-in-out infinite;
+    }
+    .mesh-blob-3 {
+      width: 500px; height: 500px; top: 25%; left: 35%;
+      background: radial-gradient(circle, rgba(196,122,56,0.18) 0%, transparent 70%);
+      animation: blobFloat3 18s ease-in-out infinite;
+    }
+    [data-theme="dark"] .mesh-blob-1 { background: radial-gradient(circle, rgba(212,160,23,0.2) 0%, transparent 70%); opacity: 0.6; }
+    [data-theme="dark"] .mesh-blob-2 { background: radial-gradient(circle, rgba(113,112,255,0.18) 0%, transparent 70%); opacity: 0.6; }
+    [data-theme="dark"] .mesh-blob-3 { background: radial-gradient(circle, rgba(212,160,23,0.1) 0%, transparent 70%); opacity: 0.5; }
+    @keyframes blobFloat1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-40px, 30px) scale(1.05); }
+      66% { transform: translate(20px, -20px) scale(0.95); }
+    }
+    @keyframes blobFloat2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -25px) scale(1.08); }
+      66% { transform: translate(-20px, 15px) scale(0.92); }
+    }
+    @keyframes blobFloat3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-30px, 20px) scale(1.1); }
+    }
+
     .hero .container {
       display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px;
       align-items: center; position: relative; z-index: 1;
+      width: 100%;
     }
-    .hero-eyebrow { margin-bottom: 24px; }
-    .hero h1 { margin-bottom: 20px; }
+
+    /* Hero entrance animations */
+    .hero-anim {
+      opacity: 0; transform: translateY(28px);
+      animation: heroFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes heroFadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow { margin-bottom: 24px; animation-delay: 0.15s; }
+    .hero h1 { margin-bottom: 24px; animation-delay: 0.25s; }
     .hero-sub {
-      font-size: 1.08rem; color: var(--text); opacity: 0.85;
-      max-width: 480px; margin-bottom: 36px; line-height: 1.6;
+      font-size: 1.12rem; color: var(--text); opacity: 0.85;
+      max-width: 500px; margin-bottom: 36px; line-height: 1.6;
+      animation-delay: 0.4s;
     }
-    .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; animation-delay: 0.55s; }
     .hero-trust {
       font-size: 0.82rem; color: var(--slate); opacity: 0.7;
       display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+      animation-delay: 0.7s;
     }
     .hero-trust .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--slate); opacity: 0.5; }
+    .hero-chart-wrap { animation-delay: 0.5s; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-anim { opacity: 1; transform: none; animation: none; }
+    }
 
     /* ── Scorecard Radar Chart (the star) ── */
     .hero-chart-wrap { position: relative; }
     .hero-chart-wrap::after {
-      content: ''; position: absolute; bottom: -20px; left: 10%; right: 10%;
-      height: 40px; background: radial-gradient(ellipse at center, rgba(50,50,93,0.12) 0%, transparent 70%);
-      filter: blur(8px); z-index: -1; pointer-events: none;
+      content: ''; position: absolute; bottom: -24px; left: 5%; right: 5%;
+      height: 50px; background: radial-gradient(ellipse at center, rgba(50,50,93,0.15) 0%, transparent 70%);
+      filter: blur(12px); z-index: -1; pointer-events: none;
     }
     .scorecard-card {
       background: var(--card-bg); border: 1px solid var(--border);
       border-radius: var(--radius-xl); padding: 28px 24px 24px;
-      box-shadow: var(--shadow-xl); position: relative;
+      box-shadow: var(--shadow-hero); position: relative;
       animation: cardFloat 6s ease-in-out infinite;
     }
     @keyframes cardFloat {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+      50% { transform: translateY(-8px); }
     }
     @media (prefers-reduced-motion: reduce) {
       .scorecard-card { animation: none; }
@@ -218,7 +298,7 @@
       fill: rgba(83,58,253,0.10); stroke: var(--purple); stroke-width: 2;
       stroke-linejoin: round; transition: fill 0.3s;
       stroke-dasharray: 600; stroke-dashoffset: 600;
-      animation: radarDraw 2s ease-out 0.3s forwards;
+      animation: radarDraw 2s ease-out 1s forwards;
     }
     @keyframes radarDraw {
       to { stroke-dashoffset: 0; }
@@ -230,12 +310,12 @@
     .radar-dot { fill: var(--purple); stroke: var(--card-bg); stroke-width: 2;
       opacity: 0; animation: dotPop 0.4s ease-out forwards;
     }
-    .radar-dot:nth-child(1) { animation-delay: 1.2s; }
-    .radar-dot:nth-child(2) { animation-delay: 1.3s; }
-    .radar-dot:nth-child(3) { animation-delay: 1.4s; }
-    .radar-dot:nth-child(4) { animation-delay: 1.5s; }
-    .radar-dot:nth-child(5) { animation-delay: 1.6s; }
-    .radar-dot:nth-child(6) { animation-delay: 1.7s; }
+    .radar-dot:nth-of-type(1) { animation-delay: 1.8s; }
+    .radar-dot:nth-of-type(2) { animation-delay: 1.9s; }
+    .radar-dot:nth-of-type(3) { animation-delay: 2s; }
+    .radar-dot:nth-of-type(4) { animation-delay: 2.1s; }
+    .radar-dot:nth-of-type(5) { animation-delay: 2.2s; }
+    .radar-dot:nth-of-type(6) { animation-delay: 2.3s; }
     @keyframes dotPop {
       0% { opacity: 0; transform: scale(0); }
       60% { transform: scale(1.3); }
@@ -245,7 +325,7 @@
       .radar-dot { animation: none; opacity: 1; }
     }
     .radar-dot-constraint { fill: var(--terracotta); stroke: var(--card-bg); stroke-width: 2; r: 6;
-      opacity: 0; animation: dotPop 0.5s ease-out 1.8s forwards;
+      opacity: 0; animation: dotPop 0.5s ease-out 2.4s forwards;
     }
     @media (prefers-reduced-motion: reduce) {
       .radar-dot-constraint { animation: none; opacity: 1; }
@@ -272,7 +352,7 @@
     .bg-alt { background: var(--bg-alt); }
     .section-bordered { border-top: 1px solid var(--border); }
 
-    /* ── Bento Grid (What We Do) ── */
+    /* ── Bento Grid ── */
     .bento {
       display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px;
       max-width: 960px; margin: 0 auto;
@@ -405,6 +485,7 @@
     @media (max-width: 900px) {
       .hero .container { grid-template-columns: 1fr; gap: 48px; }
       .hero-chart-wrap { max-width: 400px; margin: 0 auto; width: 100%; }
+      .hero { min-height: auto; padding: 40px 0 80px; }
     }
     @media (max-width: 768px) {
       section { padding: 64px 0; }
@@ -422,10 +503,9 @@
       }
       .journey-step { text-align: left; padding-left: 36px; padding-right: 0; }
       .journey-dot { margin: 0; position: absolute; left: 0; top: 0; }
-      .hero { padding: 48px 0 64px; }
     }
     @media (max-width: 480px) {
-      .hero h1 { font-size: 1.9rem; }
+      .hero h1 { font-size: 2.2rem; }
       .hero-cta-row { flex-direction: column; }
       .hero-cta-row .btn { width: 100%; }
     }
@@ -436,9 +516,9 @@
   <!-- ── Skip Link ── -->
   <a href="#what-we-do" class="skip-link">Skip to content</a>
 
-  <!-- ── Nav ── -->
+  <!-- ── Floating Pill Nav ── -->
   <nav class="nav" aria-label="Main navigation">
-    <div class="container">
+    <div class="nav-pill">
       <a href="/" class="nav-logo" style="color:inherit;text-decoration:none;">Malwa <span>Asset Firm</span></a>
       <div class="nav-actions">
         <a href="#what-we-do" class="nav-link">What We Do</a>
@@ -447,7 +527,7 @@
           <span class="icon-moon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
           <span class="icon-sun"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
         </button>
-        <a href="https://scorecard.malwaassetfirm.com" class="btn btn-primary">Get Scorecard</a>
+        <a href="https://scorecard.malwaassetfirm.com" class="nav-cta">Get Scorecard</a>
       </div>
     </div>
   </nav>
@@ -455,16 +535,23 @@
   <main>
     <!-- ── Hero ── -->
     <section class="hero">
+      <!-- Animated mesh gradient background -->
+      <div class="hero-mesh" aria-hidden="true">
+        <div class="mesh-blob mesh-blob-1"></div>
+        <div class="mesh-blob mesh-blob-2"></div>
+        <div class="mesh-blob mesh-blob-3"></div>
+      </div>
+
       <div class="container">
         <div class="hero-text">
-          <div class="hero-eyebrow eyebrow">Malwa Asset Firm</div>
-          <h1>We find what's <em>blocking</em> your growth — and fix it.</h1>
-          <p class="hero-sub">Growth consulting, AI-powered operations, and exit advisory for service businesses. Start with a free 6-vector scorecard. Find your one constraint in 10 minutes.</p>
-          <div class="hero-cta-row">
+          <div class="hero-eyebrow eyebrow hero-anim">Malwa Asset Firm</div>
+          <h1 class="hero-anim">We find what's <em>blocking</em> your growth — and fix it.</h1>
+          <p class="hero-sub hero-anim">Growth consulting, AI-powered operations, and exit advisory for service businesses. Start with a free 6-vector scorecard. Find your one constraint in 10 minutes.</p>
+          <div class="hero-cta-row hero-anim">
             <a href="https://scorecard.malwaassetfirm.com" class="btn btn-primary btn-lg">Get Your Free Scorecard →</a>
             <a href="https://deploy.malwaassetfirm.com" class="btn btn-outline btn-lg">See How Deploy Works</a>
           </div>
-          <div class="hero-trust">
+          <div class="hero-trust hero-anim">
             <span>For service businesses $1M–$25M</span>
             <span class="dot"></span>
             <span>10 minutes</span>
@@ -473,7 +560,7 @@
           </div>
         </div>
 
-        <div class="hero-chart-wrap">
+        <div class="hero-chart-wrap hero-anim">
           <div class="scorecard-card">
             <div class="scorecard-card-header">
               <div class="scorecard-card-title">6-Vector Scorecard</div>
@@ -655,7 +742,6 @@
       var reveals = document.querySelectorAll('.reveal');
       if (!reveals.length) return;
 
-      // Check reduced motion — if so, show everything immediately
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         reveals.forEach(function(el) { el.classList.add('visible'); });
         return;
