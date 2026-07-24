@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Malwa Asset Firm — Growth Consulting, AI Operations & Exit Advisory</title>
-  <meta name="description" content="We find what's blocking your growth and fix it. Growth consulting, AI-powered operations, and exit advisory for service businesses $1M–$25M. Start with a free 6-vector scorecard.">
-  <meta property="og:title" content="Malwa Asset Firm — Growth Consulting, AI Operations & Exit Advisory">
+  <title>Malwa Asset Firm — Growth Consulting, AI Operations & M&A Advisory</title>
+  <meta name="description" content="We find what's blocking your growth and fix it. Growth consulting, AI-powered operations, and M&A advisory for service businesses $1M–$25M. Start with a free 6-vector scorecard.">
+  <meta property="og:title" content="Malwa Asset Firm — Growth Consulting, AI Operations & M&A Advisory">
   <meta property="og:description" content="We find what's blocking your growth and fix it. Start with a free 6-vector scorecard. For service businesses $1M–$25M.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://malwaassetfirm.com/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Malwa Asset Firm — Growth Consulting, AI Operations & Exit Advisory">
+  <meta name="twitter:title" content="Malwa Asset Firm — Growth Consulting, AI Operations & M&A Advisory">
   <meta name="twitter:description" content="We find what's blocking your growth and fix it. Free 6-vector scorecard for service businesses $1M–$25M.">
   <link rel="canonical" href="https://malwaassetfirm.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23533afd'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Georgia, serif' font-size='17' font-weight='400'>M</text></svg>">
+  <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
   <script>(function(){var s=localStorage.getItem('maf-theme');if(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches)s='dark';if(s)document.documentElement.setAttribute('data-theme',s);})();</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,7 +26,7 @@
     /* ── Design Tokens ── */
     :root {
       --purple: #533afd; --purple-hover: #4434d4; --purple-light: #b9b9f9;
-      --terracotta: #c47a38; --terracotta-hover: #b06a2e; --terracotta-light: #e8c9a0;
+      --terracotta: #a86228; --terracotta-hover: #94551f; --terracotta-light: #e8c9a0;
       --navy: #061b31; --slate: #6b6760;
       --bg: #faf9f7; --bg-alt: #f5f2ec; --card-bg: #ffffff;
       --border: #ece8e0; --text: #4a4a4a; --heading: #061b31;
@@ -73,6 +75,15 @@
 
     .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
+    /* ── Skip Link ── */
+    .skip-link {
+      position: absolute; top: -100px; left: 16px;
+      background: var(--purple); color: #fff; padding: 8px 16px;
+      border-radius: var(--radius-sm); z-index: 200; font-weight: 500;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 8px; }
+
     /* ── Typography ── */
     h1, h2 { font-family: var(--font-serif); font-weight: 400; line-height: 1.15; color: var(--heading); }
     h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); letter-spacing: -0.02em; }
@@ -99,6 +110,7 @@
     .btn-outline:hover { border-color: var(--purple); color: var(--purple); }
     .btn-lg { padding: 14px 32px; font-size: 1rem; }
     .btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+    .nav-link:focus-visible, .footer-links a:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; border-radius: 2px; }
 
     /* ── Nav ── */
     .nav {
@@ -156,7 +168,7 @@
     }
     .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
     .hero-trust {
-      font-size: 0.82rem; color: var(--slate); opacity: 0.7;
+      font-size: 0.82rem; color: var(--slate);
       display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
     }
     .hero-trust .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--slate); opacity: 0.5; }
@@ -181,7 +193,7 @@
       padding: 3px 8px; border: 1px solid var(--terracotta-light); border-radius: var(--radius);
     }
     .scorecard-card-sub {
-      font-size: 0.75rem; color: var(--slate); margin-bottom: 12px; opacity: 0.6;
+      font-size: 0.75rem; color: var(--slate); margin-bottom: 12px;
     }
     .radar-svg { display: block; width: 100%; height: auto; max-width: 340px; margin: 0 auto; }
     .radar-grid { fill: none; stroke: var(--border); stroke-width: 1; }
@@ -210,7 +222,7 @@
     section { padding: 96px 0; }
     .section-header { max-width: 620px; margin: 0 auto 56px; }
     .section-header h2 { margin-bottom: 14px; }
-    .section-header p { font-size: 1.02rem; color: var(--text); opacity: 0.75; }
+    .section-header p { font-size: 1.02rem; color: var(--text); opacity: 0.85; }
     .section-header .eyebrow { display: block; margin-bottom: 12px; }
     .bg-alt { background: var(--bg-alt); }
 
@@ -334,7 +346,7 @@
     }
     .footer-links a { font-size: 0.85rem; color: var(--text); }
     .footer-links a:hover { color: var(--purple); }
-    .footer-copy { font-size: 0.78rem; color: var(--slate); opacity: 0.6; }
+    .footer-copy { font-size: 0.78rem; color: var(--slate); }
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
@@ -368,16 +380,19 @@
 </head>
 <body>
 
+  <!-- ── Skip Link ── -->
+  <a href="#what-we-do" class="skip-link">Skip to content</a>
+
   <!-- ── Nav ── -->
-  <nav class="nav">
+  <nav class="nav" aria-label="Main navigation">
     <div class="container">
-      <div class="nav-logo">Malwa <span>Asset Firm</span></div>
+      <a href="/" class="nav-logo" style="color:inherit;text-decoration:none;">Malwa <span>Asset Firm</span></a>
       <div class="nav-actions">
         <a href="#what-we-do" class="nav-link">What We Do</a>
         <a href="https://deploy.malwaassetfirm.com" class="nav-link">Deploy</a>
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-          <span class="icon-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
-          <span class="icon-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+          <span class="icon-moon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
         </button>
         <a href="https://scorecard.malwaassetfirm.com" class="btn btn-primary">Get Scorecard</a>
       </div>
@@ -495,7 +510,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 21V7l9-4 9 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 9h.01M15 9h.01"/></svg>
             </div>
             <div class="bento-tag">Buy & Sell-Side</div>
-            <h3>Exit Advisory</h3>
+            <h3>M&A Advisory</h3>
             <p>For owners ready to transition. Valuation, readiness, deal execution.</p>
             <span class="bento-link">Start with scorecard →</span>
           </a>
@@ -542,7 +557,7 @@
           <div class="journey-step">
             <div class="journey-dot"></div>
             <h3>Deploy</h3>
-            <p>We build and run the work. You see measurable results in 60 days — or you don't pay.</p>
+            <p>We build and run the work. You see measurable results in 60 days — or we refund every month we fail.</p>
           </div>
         </div>
       </div>
