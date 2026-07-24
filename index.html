@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +16,35 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23533afd'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Georgia, serif' font-size='17' font-weight='400'>M</text></svg>">
-  <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23533afd'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Georgia, serif' font-size='17' font-weight='400'>M</text></svg>">
+  <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
-  <script>(function(){var s=localStorage.getItem('maf-theme');if(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches)s='dark';if(s)document.documentElement.setAttribute('data-theme',s);})();</script>
+  <script>(function(){var s=localStorage.getItem('maf-theme');if(!s)s='dark';document.documentElement.setAttribute('data-theme',s);})();</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ── Design Tokens ── */
+    /* ── Design Tokens: DARK-FIRST ── */
+    /* Dark is the default (:root). Light is the toggle ([data-theme="light"]). */
     :root {
+      --purple: #7170ff; --purple-hover: #828fff; --purple-light: #4a3f8a;
+      --terracotta: #f5a623; --terracotta-hover: #ffb838; --terracotta-light: #6b5415;
+      --navy: #e2e8f0; --slate: #a8a098;
+      --bg: #15120f; --bg-alt: #1f1b16; --card-bg: #2a2520;
+      --border: rgba(255,255,255,0.16); --text: #c8c0b8; --heading: #f7f4ee;
+      --label: #a8a098;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+      --shadow-md: 0 6px 12px rgba(0,0,0,0.4);
+      --shadow-lg: 0 12px 28px rgba(0,0,0,0.5);
+      --shadow-xl: 0 24px 64px rgba(0,0,0,0.6);
+      --shadow-hero: 0 30px 80px -12px rgba(0,0,0,0.6), 0 12px 24px rgba(0,0,0,0.3);
+      --radius: 12px; --radius-sm: 8px; --radius-lg: 16px; --radius-xl: 20px;
+      --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-serif: Georgia, 'Times New Roman', serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    }
+    [data-theme="light"] {
       --purple: #533afd; --purple-hover: #4434d4; --purple-light: #b9b9f9;
-      --terracotta: #8b6914; --terracotta-hover: #7a5c12; --terracotta-light: #e8d9b8;
+      --terracotta: #b8821a; --terracotta-hover: #a67316; --terracotta-light: #e8d9b8;
       --navy: #061b31; --slate: #6b6760;
       --bg: #faf9f7; --bg-alt: #f5f2ec; --card-bg: #ffffff;
       --border: #ece8e0; --text: #4a4a4a; --heading: #061b31;
@@ -36,23 +54,6 @@
       --shadow-lg: 0 10px 25px rgba(50,50,93,0.15), 0 4px 10px rgba(0,0,0,0.06);
       --shadow-xl: 0 20px 50px rgba(50,50,93,0.2), 0 8px 20px rgba(0,0,0,0.08);
       --shadow-hero: 0 30px 80px -12px rgba(50,50,93,0.25), 0 12px 24px rgba(0,0,0,0.06);
-      --radius: 6px; --radius-sm: 4px; --radius-lg: 8px; --radius-xl: 12px;
-      --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-      --font-serif: Georgia, 'Times New Roman', serif;
-      --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
-    }
-    [data-theme="dark"] {
-      --purple: #7170ff; --purple-hover: #828fff; --purple-light: #4a3f8a;
-      --terracotta: #d4a017; --terracotta-hover: #e0b020; --terracotta-light: #5a4a1a;
-      --navy: #e2e8f0; --slate: #a8a098;
-      --bg: #1a1714; --bg-alt: #221e1a; --card-bg: #2e2925;
-      --border: rgba(255,255,255,0.10); --text: #c8c0b8; --heading: #f7f4ee;
-      --label: #a8a098;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
-      --shadow-md: 0 4px 6px rgba(0,0,0,0.4);
-      --shadow-lg: 0 10px 25px rgba(0,0,0,0.5);
-      --shadow-xl: 0 20px 50px rgba(0,0,0,0.6);
-      --shadow-hero: 0 30px 80px -12px rgba(0,0,0,0.5), 0 12px 24px rgba(0,0,0,0.3);
     }
 
     html { scroll-behavior: smooth; }
@@ -127,9 +128,9 @@
       padding: 16px 0;
     }
     .nav-pill {
-      background: rgba(250,249,247,0.72); backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(42,37,32,0.72); backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(236,232,224,0.6);
+      border: 1px solid var(--border);
       border-radius: 100px; padding: 10px 14px 10px 24px;
       box-shadow: var(--shadow-sm);
       display: flex; justify-content: space-between; align-items: center;
@@ -137,9 +138,9 @@
       transition: box-shadow 0.3s, border-color 0.3s;
     }
     .nav-pill:hover { box-shadow: var(--shadow-md); }
-    [data-theme="dark"] .nav-pill {
-      background: rgba(46,41,37,0.72);
-      border-color: rgba(255,255,255,0.08);
+    [data-theme="light"] .nav-pill {
+      background: rgba(250,249,247,0.72);
+      border-color: rgba(236,232,224,0.6);
     }
     .nav-logo { font-weight: 600; font-size: 1rem; color: var(--heading); letter-spacing: -0.02em; }
     .nav-logo span { color: var(--purple); font-weight: 400; }
@@ -148,8 +149,8 @@
       font-size: 0.85rem; color: var(--text); font-weight: 500; transition: color 0.2s;
       padding: 6px 12px; border-radius: 100px;
     }
-    .nav-link:hover { color: var(--purple); background: rgba(83,58,253,0.06); }
-    [data-theme="dark"] .nav-link:hover { background: rgba(113,112,255,0.08); }
+    .nav-link:hover { color: var(--purple); background: rgba(113,112,255,0.08); }
+    [data-theme="light"] .nav-link:hover { background: rgba(83,58,253,0.06); }
     @media (max-width: 640px) { .nav-link { display: none; } }
 
     .theme-toggle {
@@ -178,8 +179,6 @@
       padding: 60px 0 120px; position: relative; overflow: hidden;
       min-height: 90vh; display: flex; align-items: center;
     }
-    [data-theme="light"] .hero { background: #faf9f7; }
-    [data-theme="dark"] .hero { background: var(--bg); }
 
     /* Animated mesh gradient background */
     .hero-mesh {
@@ -187,26 +186,26 @@
     }
     .mesh-blob {
       position: absolute; border-radius: 50%; filter: blur(60px);
-      opacity: 0.8; will-change: transform;
+      opacity: 0.7; will-change: transform;
     }
     .mesh-blob-1 {
       width: 600px; height: 600px; top: -15%; right: -8%;
-      background: radial-gradient(circle, rgba(139,105,20,0.45) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(245,166,35,0.28) 0%, transparent 70%);
       animation: blobFloat1 20s ease-in-out infinite;
     }
     .mesh-blob-2 {
       width: 700px; height: 700px; bottom: -20%; left: -12%;
-      background: radial-gradient(circle, rgba(83,58,253,0.22) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(113,112,255,0.20) 0%, transparent 70%);
       animation: blobFloat2 25s ease-in-out infinite;
     }
     .mesh-blob-3 {
       width: 500px; height: 500px; top: 25%; left: 35%;
-      background: radial-gradient(circle, rgba(196,122,56,0.18) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(245,166,35,0.14) 0%, transparent 70%);
       animation: blobFloat3 18s ease-in-out infinite;
     }
-    [data-theme="dark"] .mesh-blob-1 { background: radial-gradient(circle, rgba(212,160,23,0.2) 0%, transparent 70%); opacity: 0.6; }
-    [data-theme="dark"] .mesh-blob-2 { background: radial-gradient(circle, rgba(113,112,255,0.18) 0%, transparent 70%); opacity: 0.6; }
-    [data-theme="dark"] .mesh-blob-3 { background: radial-gradient(circle, rgba(212,160,23,0.1) 0%, transparent 70%); opacity: 0.5; }
+    [data-theme="light"] .mesh-blob-1 { background: radial-gradient(circle, rgba(184,130,26,0.45) 0%, transparent 70%); opacity: 0.8; }
+    [data-theme="light"] .mesh-blob-2 { background: radial-gradient(circle, rgba(83,58,253,0.22) 0%, transparent 70%); opacity: 0.8; }
+    [data-theme="light"] .mesh-blob-3 { background: radial-gradient(circle, rgba(184,130,26,0.18) 0%, transparent 70%); opacity: 0.8; }
     @keyframes blobFloat1 {
       0%, 100% { transform: translate(0, 0) scale(1); }
       33% { transform: translate(-40px, 30px) scale(1.05); }
@@ -258,10 +257,11 @@
     /* ── Scorecard Radar Chart (the star) ── */
     .hero-chart-wrap { position: relative; }
     .hero-chart-wrap::after {
-      content: ''; position: absolute; bottom: -24px; left: 5%; right: 5%;
-      height: 50px; background: radial-gradient(ellipse at center, rgba(50,50,93,0.15) 0%, transparent 70%);
-      filter: blur(12px); z-index: -1; pointer-events: none;
+      content: ''; position: absolute; bottom: -24px; left: 0%; right: 0%;
+      height: 100%; background: radial-gradient(ellipse at 50% 40%, rgba(245,166,35,0.10) 0%, transparent 60%);
+      filter: blur(20px); z-index: -1; pointer-events: none;
     }
+    [data-theme="light"] .hero-chart-wrap::after { background: radial-gradient(ellipse at center, rgba(50,50,93,0.15) 0%, transparent 70%); }
     .scorecard-card {
       background: var(--card-bg); border: 1px solid var(--border);
       border-radius: var(--radius-xl); padding: 28px 24px 24px;
@@ -286,7 +286,7 @@
     .scorecard-card-badge {
       font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500;
       color: var(--terracotta); letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 3px 8px; border: 1px solid var(--terracotta-light); border-radius: var(--radius);
+      padding: 3px 8px; border: 1px solid var(--terracotta-light); border-radius: var(--radius-sm);
     }
     .scorecard-card-sub {
       font-size: 0.75rem; color: var(--slate); margin-bottom: 12px;
@@ -295,18 +295,18 @@
     .radar-grid { fill: none; stroke: var(--border); stroke-width: 1; }
     .radar-axis { stroke: var(--border); stroke-width: 1; }
     .radar-poly {
-      fill: rgba(83,58,253,0.10); stroke: var(--purple); stroke-width: 2;
+      fill: rgba(113,112,255,0.12); stroke: var(--purple); stroke-width: 2;
       stroke-linejoin: round; transition: fill 0.3s;
       stroke-dasharray: 600; stroke-dashoffset: 600;
       animation: radarDraw 2s ease-out 1s forwards;
     }
+    [data-theme="light"] .radar-poly { fill: rgba(83,58,253,0.10); }
     @keyframes radarDraw {
       to { stroke-dashoffset: 0; }
     }
     @media (prefers-reduced-motion: reduce) {
       .radar-poly { animation: none; stroke-dashoffset: 0; }
     }
-    [data-theme="dark"] .radar-poly { fill: rgba(113,112,255,0.12); }
     .radar-dot { fill: var(--purple); stroke: var(--card-bg); stroke-width: 2;
       opacity: 0; animation: dotPop 0.4s ease-out forwards;
     }
@@ -336,12 +336,12 @@
     .radar-score-constraint { fill: var(--terracotta); opacity: 1; font-weight: 600; }
 
     .scorecard-insight {
-      margin-top: 16px; padding: 12px 16px; background: rgba(139,105,20,0.08);
-      border: 1px solid rgba(139,105,20,0.2); border-radius: var(--radius);
+      margin-top: 16px; padding: 12px 16px; background: rgba(245,166,35,0.10);
+      border: 1px solid rgba(245,166,35,0.25); border-radius: var(--radius);
       font-size: 0.85rem; color: var(--heading); line-height: 1.5;
     }
     .scorecard-insight strong { color: var(--terracotta); font-weight: 600; }
-    [data-theme="dark"] .scorecard-insight { background: rgba(212,160,23,0.08); border-color: rgba(212,160,23,0.2); }
+    [data-theme="light"] .scorecard-insight { background: rgba(184,130,26,0.08); border-color: rgba(184,130,26,0.2); }
 
     /* ── Sections ── */
     section { padding: 96px 0; }
@@ -373,12 +373,13 @@
     .bento-ma { grid-column: 2; grid-row: 2; }
 
     .bento-icon {
-      width: 40px; height: 40px; border-radius: var(--radius);
-      background: rgba(83,58,253,0.08); display: flex; align-items: center;
+      width: 40px; height: 40px; border-radius: var(--radius-sm);
+      background: rgba(113,112,255,0.10); display: flex; align-items: center;
       justify-content: center; margin-bottom: 18px; flex-shrink: 0;
     }
+    [data-theme="light"] .bento-icon { background: rgba(83,58,253,0.08); }
     .bento-icon svg { width: 20px; height: 20px; stroke: var(--purple); fill: none; stroke-width: 1.5; }
-    .bento-deploy .bento-icon { width: 48px; height: 48px; border-radius: var(--radius-lg); }
+    .bento-deploy .bento-icon { width: 48px; height: 48px; border-radius: var(--radius); }
     .bento-deploy .bento-icon svg { width: 24px; height: 24px; }
 
     .bento-tag {
@@ -411,7 +412,7 @@
     }
     .constraint-mark {
       font-family: var(--font-serif); font-size: 3rem; color: var(--terracotta);
-      opacity: 0.25; line-height: 1; margin-bottom: 8px; display: block;
+      opacity: 0.3; line-height: 1; margin-bottom: 8px; display: block;
     }
 
     /* ── Journey Flow ── */
@@ -431,7 +432,8 @@
       margin: 0 auto 22px; box-shadow: 0 0 0 5px var(--bg);
       transition: transform 0.25s, box-shadow 0.25s;
     }
-    .journey-step:hover .journey-dot { transform: scale(1.2); box-shadow: 0 0 0 5px var(--bg), 0 0 0 8px rgba(83,58,253,0.15); }
+    .journey-step:hover .journey-dot { transform: scale(1.2); box-shadow: 0 0 0 5px var(--bg), 0 0 0 8px rgba(113,112,255,0.2); }
+    [data-theme="light"] .journey-step:hover .journey-dot { box-shadow: 0 0 0 5px var(--bg), 0 0 0 8px rgba(83,58,253,0.15); }
     .journey-step h3 { margin-bottom: 8px; font-size: 1rem; }
     .journey-step p { font-size: 0.85rem; color: var(--slate); opacity: 0.8; line-height: 1.5; }
 
@@ -439,13 +441,14 @@
     .cta-section {
       text-align: center; padding: 100px 0; position: relative; overflow: hidden;
     }
+    .cta-section { background: #0f0d0b; }
     [data-theme="light"] .cta-section { background: #1a1714; }
-    [data-theme="dark"] .cta-section { background: #0f0d0b; }
     .cta-section::before {
       content: ''; position: absolute; top: -30%; left: -30%; width: 160%; height: 160%;
-      background: radial-gradient(ellipse at 50% 40%, rgba(139,105,20,0.10) 0%, transparent 50%);
+      background: radial-gradient(ellipse at 50% 40%, rgba(245,166,35,0.14) 0%, transparent 50%);
       pointer-events: none;
     }
+    [data-theme="light"] .cta-section::before { background: radial-gradient(ellipse at 50% 40%, rgba(184,130,26,0.10) 0%, transparent 50%); }
     .cta-section .container { position: relative; z-index: 1; }
     .cta-section h2 {
       color: #f7f4ee; font-family: var(--font-serif); font-weight: 400;
@@ -535,7 +538,6 @@
   <main>
     <!-- ── Hero ── -->
     <section class="hero">
-      <!-- Animated mesh gradient background -->
       <div class="hero-mesh" aria-hidden="true">
         <div class="mesh-blob mesh-blob-1"></div>
         <div class="mesh-blob mesh-blob-2"></div>
@@ -569,27 +571,22 @@
             <div class="scorecard-card-sub">Growth diagnostics across six business vectors</div>
 
             <svg class="radar-svg" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" aria-label="6-vector radar chart showing sample scores">
-              <!-- Grid hexagons -->
               <polygon class="radar-grid" points="160,235 224.95,197.5 224.95,122.5 160,85 95.05,122.5 95.05,197.5"/>
               <polygon class="radar-grid" points="160,210 203.3,185 203.3,135 160,110 116.7,135 116.7,185"/>
               <polygon class="radar-grid" points="160,185 181.65,172.5 181.65,147.5 160,135 138.35,147.5 138.35,172.5"/>
-              <!-- Axis lines -->
               <line class="radar-axis" x1="160" y1="160" x2="160" y2="60"/>
               <line class="radar-axis" x1="160" y1="160" x2="246.6" y2="110"/>
               <line class="radar-axis" x1="160" y1="160" x2="246.6" y2="210"/>
               <line class="radar-axis" x1="160" y1="160" x2="160" y2="260"/>
               <line class="radar-axis" x1="160" y1="160" x2="73.4" y2="210"/>
               <line class="radar-axis" x1="160" y1="160" x2="73.4" y2="110"/>
-              <!-- Data polygon: Demand 65, Conversion 48, Delivery 72, Cash Flow 38, Retention 55, Support 80 -->
               <polygon class="radar-poly" points="160,95 201.57,136 222.35,196 160,198 112.37,187.5 90.72,120"/>
-              <!-- Vertex dots -->
               <circle class="radar-dot" cx="160" cy="95" r="4"/>
               <circle class="radar-dot" cx="201.57" cy="136" r="4"/>
               <circle class="radar-dot" cx="222.35" cy="196" r="4"/>
               <circle class="radar-dot-constraint" cx="160" cy="198" r="6"/>
               <circle class="radar-dot" cx="112.37" cy="187.5" r="4"/>
               <circle class="radar-dot" cx="90.72" cy="120" r="4"/>
-              <!-- Labels -->
               <text class="radar-label" x="160" y="48" text-anchor="middle">Demand</text>
               <text class="radar-score" x="160" y="60" text-anchor="middle">65</text>
               <text class="radar-label" x="258" y="106" text-anchor="start">Conversion</text>
@@ -622,7 +619,6 @@
         </div>
 
         <div class="bento">
-          <!-- Deploy (large card) -->
           <a href="https://deploy.malwaassetfirm.com" class="bento-card bento-deploy reveal" style="transition-delay: 0ms">
             <div class="bento-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
@@ -633,7 +629,6 @@
             <span class="bento-link">Explore Deploy →</span>
           </a>
 
-          <!-- Consulting -->
           <a href="https://scorecard.malwaassetfirm.com" class="bento-card bento-consulting reveal" style="transition-delay: 50ms">
             <div class="bento-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
@@ -644,7 +639,6 @@
             <span class="bento-link">Start with scorecard →</span>
           </a>
 
-          <!-- M&A Advisory -->
           <a href="https://scorecard.malwaassetfirm.com" class="bento-card bento-ma reveal" style="transition-delay: 100ms">
             <div class="bento-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 21V7l9-4 9 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 9h.01M15 9h.01"/></svg>
@@ -731,13 +725,12 @@
 
   <script>
     function toggleTheme() {
-      var current = document.documentElement.getAttribute('data-theme') || 'light';
-      var next = current === 'light' ? 'dark' : 'light';
+      var current = document.documentElement.getAttribute('data-theme') || 'dark';
+      var next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('maf-theme', next);
     }
 
-    // ── Scroll Reveals (IntersectionObserver, first-view-only) ──
     (function() {
       var reveals = document.querySelectorAll('.reveal');
       if (!reveals.length) return;
