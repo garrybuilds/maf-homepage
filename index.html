@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malwa Asset Firm — Growth Consulting, AI Operations & Exit Advisory</title>
+  <meta name="description" content="We find what's blocking your growth and fix it. Growth consulting, AI-powered operations, and exit advisory for service businesses $1M–$25M. Start with a free 6-vector scorecard.">
+  <meta property="og:title" content="Malwa Asset Firm — Growth Consulting, AI Operations & Exit Advisory">
+  <meta property="og:description" content="We find what's blocking your growth and fix it. Start with a free 6-vector scorecard. For service businesses $1M–$25M.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://malwaassetfirm.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Malwa Asset Firm — Growth Consulting, AI Operations & Exit Advisory">
+  <meta name="twitter:description" content="We find what's blocking your growth and fix it. Free 6-vector scorecard for service businesses $1M–$25M.">
+  <link rel="canonical" href="https://malwaassetfirm.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23533afd'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Georgia, serif' font-size='17' font-weight='400'>M</text></svg>">
+  <script>(function(){var s=localStorage.getItem('maf-theme');if(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches)s='dark';if(s)document.documentElement.setAttribute('data-theme',s);})();</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Design Tokens ── */
+    :root {
+      --purple: #533afd; --purple-hover: #4434d4; --purple-light: #b9b9f9;
+      --terracotta: #c47a38; --terracotta-hover: #b06a2e; --terracotta-light: #e8c9a0;
+      --navy: #061b31; --slate: #6b6760;
+      --bg: #faf9f7; --bg-alt: #f5f2ec; --card-bg: #ffffff;
+      --border: #ece8e0; --text: #4a4a4a; --heading: #061b31;
+      --label: #8a8580;
+      --shadow-sm: 0 1px 2px rgba(50,50,93,0.08), 0 1px 1px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 6px rgba(50,50,93,0.11), 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 25px rgba(50,50,93,0.15), 0 4px 10px rgba(0,0,0,0.06);
+      --shadow-xl: 0 20px 50px rgba(50,50,93,0.2), 0 8px 20px rgba(0,0,0,0.08);
+      --radius: 6px; --radius-sm: 4px; --radius-lg: 8px; --radius-xl: 12px;
+      --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-serif: Georgia, 'Times New Roman', serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    }
+    [data-theme="dark"] {
+      --purple: #7170ff; --purple-hover: #828fff; --purple-light: #4a3f8a;
+      --terracotta: #d4945a; --terracotta-hover: #e0a472; --terracotta-light: #5a3a1a;
+      --navy: #e2e8f0; --slate: #a8a098;
+      --bg: #1a1714; --bg-alt: #221e1a; --card-bg: #2e2925;
+      --border: rgba(255,255,255,0.10); --text: #c8c0b8; --heading: #f7f4ee;
+      --label: #8a8580;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.4);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.5);
+      --shadow-xl: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    body {
+      font-family: var(--font-sans); font-weight: 400; color: var(--text);
+      background: var(--bg); line-height: 1.5;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--purple-light); }
+
+    a { color: var(--purple); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--purple-hover); }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Typography ── */
+    h1, h2 { font-family: var(--font-serif); font-weight: 400; line-height: 1.15; color: var(--heading); }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.1rem); letter-spacing: -0.01em; }
+    h3 { font-family: var(--font-sans); font-weight: 500; font-size: 1.15rem; color: var(--heading); letter-spacing: -0.01em; }
+    p { line-height: 1.6; }
+
+    .eyebrow {
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+      color: var(--terracotta); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 11px 22px; border-radius: var(--radius-sm);
+      font-family: var(--font-sans); font-weight: 500; font-size: 0.9rem;
+      cursor: pointer; transition: all 0.2s; border: none; text-align: center;
+    }
+    .btn-primary { background: var(--purple); color: #fff; }
+    .btn-primary:hover { background: var(--purple-hover); color: #fff; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--heading); }
+    .btn-outline:hover { border-color: var(--purple); color: var(--purple); }
+    .btn-lg { padding: 14px 32px; font-size: 1rem; }
+    .btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,249,247,0.88); backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid var(--border); padding: 14px 0;
+    }
+    [data-theme="dark"] .nav { background: rgba(26,23,20,0.88); }
+    .nav .container { display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { font-weight: 600; font-size: 1rem; color: var(--heading); letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--purple); font-weight: 400; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .nav-link {
+      font-size: 0.85rem; color: var(--text); font-weight: 500; transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--purple); }
+    @media (max-width: 640px) { .nav-link { display: none; } }
+
+    .theme-toggle {
+      background: none; border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--text); cursor: pointer; width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s;
+    }
+    .theme-toggle:hover { border-color: var(--purple); color: var(--purple); }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    .theme-toggle:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+
+    /* ── Hero (split layout) ── */
+    .hero {
+      padding: 80px 0 100px; position: relative; overflow: hidden;
+    }
+    [data-theme="light"] .hero { background: linear-gradient(165deg, #faf9f7 0%, #f5f0e8 50%, #faf9f7 100%); }
+    [data-theme="dark"] .hero { background: var(--bg); }
+    .hero::before {
+      content: ''; position: absolute; top: -20%; left: -20%; width: 140%; height: 140%;
+      background: radial-gradient(ellipse at 65% 35%, rgba(196,122,56,0.07) 0%, transparent 50%),
+                  radial-gradient(ellipse at 35% 70%, rgba(83,58,253,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero .container {
+      display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .hero-eyebrow { margin-bottom: 24px; }
+    .hero h1 { margin-bottom: 20px; }
+    .hero-sub {
+      font-size: 1.08rem; color: var(--text); opacity: 0.85;
+      max-width: 480px; margin-bottom: 36px; line-height: 1.6;
+    }
+    .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-trust {
+      font-size: 0.82rem; color: var(--slate); opacity: 0.7;
+      display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+    }
+    .hero-trust .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--slate); opacity: 0.5; }
+
+    /* ── Scorecard Radar Chart (the star) ── */
+    .scorecard-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 28px 24px 24px;
+      box-shadow: var(--shadow-xl); position: relative;
+    }
+    .scorecard-card-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .scorecard-card-title {
+      font-family: var(--font-serif); font-size: 1.05rem; font-weight: 400;
+      color: var(--heading); letter-spacing: -0.01em;
+    }
+    .scorecard-card-badge {
+      font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500;
+      color: var(--terracotta); letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 3px 8px; border: 1px solid var(--terracotta-light); border-radius: var(--radius);
+    }
+    .scorecard-card-sub {
+      font-size: 0.75rem; color: var(--slate); margin-bottom: 12px; opacity: 0.6;
+    }
+    .radar-svg { display: block; width: 100%; height: auto; max-width: 340px; margin: 0 auto; }
+    .radar-grid { fill: none; stroke: var(--border); stroke-width: 1; }
+    .radar-axis { stroke: var(--border); stroke-width: 1; }
+    .radar-poly {
+      fill: rgba(83,58,253,0.10); stroke: var(--purple); stroke-width: 2;
+      stroke-linejoin: round; transition: fill 0.3s;
+    }
+    [data-theme="dark"] .radar-poly { fill: rgba(113,112,255,0.12); }
+    .radar-dot { fill: var(--purple); stroke: var(--card-bg); stroke-width: 2; }
+    .radar-dot-constraint { fill: var(--terracotta); stroke: var(--card-bg); stroke-width: 2; r: 6; }
+    .radar-label { font-family: var(--font-sans); font-size: 10px; fill: var(--slate); font-weight: 500; }
+    .radar-score { font-family: var(--font-mono); font-size: 9px; fill: var(--slate); opacity: 0.6; }
+    .radar-label-constraint { fill: var(--terracotta); font-weight: 600; }
+    .radar-score-constraint { fill: var(--terracotta); opacity: 1; font-weight: 600; }
+
+    .scorecard-insight {
+      margin-top: 16px; padding: 12px 16px; background: rgba(196,122,56,0.07);
+      border: 1px solid rgba(196,122,56,0.2); border-radius: var(--radius);
+      font-size: 0.85rem; color: var(--heading); line-height: 1.5;
+    }
+    .scorecard-insight strong { color: var(--terracotta); font-weight: 600; }
+    [data-theme="dark"] .scorecard-insight { background: rgba(212,148,90,0.08); border-color: rgba(212,148,90,0.2); }
+
+    /* ── Sections ── */
+    section { padding: 96px 0; }
+    .section-header { max-width: 620px; margin: 0 auto 56px; }
+    .section-header h2 { margin-bottom: 14px; }
+    .section-header p { font-size: 1.02rem; color: var(--text); opacity: 0.75; }
+    .section-header .eyebrow { display: block; margin-bottom: 12px; }
+    .bg-alt { background: var(--bg-alt); }
+
+    /* ── Bento Grid (What We Do) ── */
+    .bento {
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px;
+      max-width: 960px; margin: 0 auto;
+    }
+    .bento-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 32px 28px;
+      box-shadow: var(--shadow-sm); transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      display: flex; flex-direction: column; text-decoration: none; color: inherit;
+    }
+    .bento-card:hover {
+      transform: translateY(-3px); box-shadow: var(--shadow-lg);
+      border-color: var(--purple-light); color: inherit;
+    }
+    .bento-card:focus-visible { outline: 2px solid var(--purple); outline-offset: 3px; }
+    .bento-deploy { grid-column: 1; grid-row: 1 / 3; }
+    .bento-consulting { grid-column: 2; grid-row: 1; }
+    .bento-ma { grid-column: 2; grid-row: 2; }
+
+    .bento-icon {
+      width: 40px; height: 40px; border-radius: var(--radius);
+      background: rgba(83,58,253,0.08); display: flex; align-items: center;
+      justify-content: center; margin-bottom: 18px; flex-shrink: 0;
+    }
+    .bento-icon svg { width: 20px; height: 20px; stroke: var(--purple); fill: none; stroke-width: 1.5; }
+    .bento-deploy .bento-icon { width: 48px; height: 48px; border-radius: var(--radius-lg); }
+    .bento-deploy .bento-icon svg { width: 24px; height: 24px; }
+
+    .bento-tag {
+      font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500;
+      color: var(--purple); letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .bento-card h3 { margin-bottom: 10px; font-size: 1.1rem; }
+    .bento-deploy h3 { font-family: var(--font-serif); font-weight: 400; font-size: 1.5rem; margin-bottom: 14px; }
+    .bento-card p { font-size: 0.9rem; color: var(--text); opacity: 0.8; line-height: 1.55; flex: 1; }
+    .bento-deploy p { font-size: 0.95rem; margin-bottom: 20px; opacity: 0.88; }
+    .bento-link {
+      font-size: 0.85rem; font-weight: 500; color: var(--purple);
+      margin-top: 16px; display: inline-flex; align-items: center; gap: 4px;
+      transition: gap 0.2s;
+    }
+    .bento-card:hover .bento-link { gap: 8px; }
+    .bento-deploy .bento-link { font-size: 0.9rem; margin-top: auto; }
+
+    /* ── Constraint Principle ── */
+    .constraint-section { text-align: center; }
+    .constraint-statement {
+      max-width: 680px; margin: 0 auto; position: relative;
+    }
+    .constraint-statement h2 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 24px;
+    }
+    .constraint-statement p {
+      font-size: 1.05rem; color: var(--text); opacity: 0.8; line-height: 1.7;
+    }
+    .constraint-mark {
+      font-family: var(--font-serif); font-size: 3rem; color: var(--terracotta);
+      opacity: 0.25; line-height: 1; margin-bottom: 8px; display: block;
+    }
+
+    /* ── Journey Flow ── */
+    .journey-flow {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      position: relative; max-width: 900px; margin: 0 auto;
+    }
+    .journey-flow::before {
+      content: ''; position: absolute; top: 7px; left: 12.5%; right: 12.5%;
+      height: 2px; background: var(--border); z-index: 0;
+    }
+    .journey-step {
+      text-align: center; padding: 0 20px; position: relative; z-index: 1;
+    }
+    .journey-dot {
+      width: 14px; height: 14px; border-radius: 50%; background: var(--purple);
+      margin: 0 auto 22px; box-shadow: 0 0 0 5px var(--bg);
+      transition: transform 0.25s;
+    }
+    .journey-step:hover .journey-dot { transform: scale(1.2); }
+    .journey-step h3 { margin-bottom: 8px; font-size: 1rem; }
+    .journey-step p { font-size: 0.85rem; color: var(--slate); opacity: 0.8; line-height: 1.5; }
+
+    /* ── Final CTA ── */
+    .cta-section {
+      text-align: center; padding: 100px 0; position: relative; overflow: hidden;
+    }
+    [data-theme="light"] .cta-section { background: #1a1714; }
+    [data-theme="dark"] .cta-section { background: #0f0d0b; }
+    .cta-section::before {
+      content: ''; position: absolute; top: -30%; left: -30%; width: 160%; height: 160%;
+      background: radial-gradient(ellipse at 50% 40%, rgba(196,122,56,0.10) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .cta-section .container { position: relative; z-index: 1; }
+    .cta-section h2 {
+      color: #f7f4ee; font-family: var(--font-serif); font-weight: 400;
+      font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 20px;
+      max-width: 520px; margin-left: auto; margin-right: auto;
+    }
+    .cta-sub {
+      color: rgba(247,244,238,0.55); font-size: 0.95rem;
+      max-width: 440px; margin: 0 auto 36px; line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--bg-alt); border-top: 1px solid var(--border);
+      padding: 40px 0; text-align: center;
+    }
+    .footer-brand {
+      font-family: var(--font-serif); font-size: 1rem; color: var(--heading);
+      margin-bottom: 12px;
+    }
+    .footer-links {
+      display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .footer-links a { font-size: 0.85rem; color: var(--text); }
+    .footer-links a:hover { color: var(--purple); }
+    .footer-copy { font-size: 0.78rem; color: var(--slate); opacity: 0.6; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero .container { grid-template-columns: 1fr; gap: 48px; }
+      .hero-chart-wrap { max-width: 400px; margin: 0 auto; width: 100%; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 64px 0; }
+      .container { padding: 0 16px; }
+      .bento { grid-template-columns: 1fr; }
+      .bento-deploy { grid-column: 1; grid-row: 1; }
+      .bento-consulting { grid-column: 1; grid-row: 2; }
+      .bento-ma { grid-column: 1; grid-row: 3; }
+      .journey-flow {
+        grid-template-columns: 1fr; gap: 32px;
+        max-width: 360px;
+      }
+      .journey-flow::before {
+        top: 0; bottom: 0; left: 7px; width: 2px; height: 100%;
+      }
+      .journey-step { text-align: left; padding-left: 36px; padding-right: 0; }
+      .journey-dot { margin: 0; position: absolute; left: 0; top: 0; }
+      .hero { padding: 48px 0 64px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.9rem; }
+      .hero-cta-row { flex-direction: column; }
+      .hero-cta-row .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-logo">Malwa <span>Asset Firm</span></div>
+      <div class="nav-actions">
+        <a href="#what-we-do" class="nav-link">What We Do</a>
+        <a href="https://deploy.malwaassetfirm.com" class="nav-link">Deploy</a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <span class="icon-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+          <span class="icon-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+        </button>
+        <a href="https://scorecard.malwaassetfirm.com" class="btn btn-primary">Get Scorecard</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ── Hero ── -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-text">
+          <div class="hero-eyebrow eyebrow">Malwa Asset Firm</div>
+          <h1>We find what's blocking your growth — and fix it.</h1>
+          <p class="hero-sub">Growth consulting, AI-powered operations, and exit advisory for service businesses. Start with a free 6-vector scorecard. Find your one constraint in 10 minutes.</p>
+          <div class="hero-cta-row">
+            <a href="https://scorecard.malwaassetfirm.com" class="btn btn-primary btn-lg">Get Your Free Scorecard →</a>
+            <a href="https://deploy.malwaassetfirm.com" class="btn btn-outline btn-lg">See How Deploy Works</a>
+          </div>
+          <div class="hero-trust">
+            <span>For service businesses $1M–$25M</span>
+            <span class="dot"></span>
+            <span>10 minutes</span>
+            <span class="dot"></span>
+            <span>No obligation</span>
+          </div>
+        </div>
+
+        <div class="hero-chart-wrap">
+          <div class="scorecard-card">
+            <div class="scorecard-card-header">
+              <div class="scorecard-card-title">6-Vector Scorecard</div>
+              <div class="scorecard-card-badge">Sample</div>
+            </div>
+            <div class="scorecard-card-sub">Growth diagnostics across six business vectors</div>
+
+            <svg class="radar-svg" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" aria-label="6-vector radar chart showing sample scores">
+              <!-- Grid hexagons -->
+              <polygon class="radar-grid" points="160,235 224.95,197.5 224.95,122.5 160,85 95.05,122.5 95.05,197.5"/>
+              <polygon class="radar-grid" points="160,210 203.3,185 203.3,135 160,110 116.7,135 116.7,185"/>
+              <polygon class="radar-grid" points="160,185 181.65,172.5 181.65,147.5 160,135 138.35,147.5 138.35,172.5"/>
+              <!-- Axis lines -->
+              <line class="radar-axis" x1="160" y1="160" x2="160" y2="60"/>
+              <line class="radar-axis" x1="160" y1="160" x2="246.6" y2="110"/>
+              <line class="radar-axis" x1="160" y1="160" x2="246.6" y2="210"/>
+              <line class="radar-axis" x1="160" y1="160" x2="160" y2="260"/>
+              <line class="radar-axis" x1="160" y1="160" x2="73.4" y2="210"/>
+              <line class="radar-axis" x1="160" y1="160" x2="73.4" y2="110"/>
+              <!-- Data polygon: Demand 65, Conversion 48, Delivery 72, Cash Flow 38, Retention 55, Support 80 -->
+              <polygon class="radar-poly" points="160,95 201.57,136 222.35,196 160,198 112.37,187.5 90.72,120"/>
+              <!-- Vertex dots -->
+              <circle class="radar-dot" cx="160" cy="95" r="4"/>
+              <circle class="radar-dot" cx="201.57" cy="136" r="4"/>
+              <circle class="radar-dot" cx="222.35" cy="196" r="4"/>
+              <circle class="radar-dot-constraint" cx="160" cy="198" r="6"/>
+              <circle class="radar-dot" cx="112.37" cy="187.5" r="4"/>
+              <circle class="radar-dot" cx="90.72" cy="120" r="4"/>
+              <!-- Labels -->
+              <text class="radar-label" x="160" y="48" text-anchor="middle">Demand</text>
+              <text class="radar-score" x="160" y="60" text-anchor="middle">65</text>
+              <text class="radar-label" x="258" y="106" text-anchor="start">Conversion</text>
+              <text class="radar-score" x="258" y="118" text-anchor="start">48</text>
+              <text class="radar-label" x="258" y="218" text-anchor="start">Delivery</text>
+              <text class="radar-score" x="258" y="230" text-anchor="start">72</text>
+              <text class="radar-label radar-label-constraint" x="160" y="278" text-anchor="middle">Cash Flow</text>
+              <text class="radar-score radar-score-constraint" x="160" y="290" text-anchor="middle">38</text>
+              <text class="radar-label" x="62" y="218" text-anchor="end">Retention</text>
+              <text class="radar-score" x="62" y="230" text-anchor="end">55</text>
+              <text class="radar-label" x="62" y="106" text-anchor="end">Support</text>
+              <text class="radar-score" x="62" y="118" text-anchor="end">80</text>
+            </svg>
+
+            <div class="scorecard-insight">
+              <strong>Cash Flow is your constraint.</strong> That's where we start.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── What We Do (bento grid) ── -->
+    <section id="what-we-do">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">What We Do</span>
+          <h2>Three ways we help service businesses grow.</h2>
+          <p>All start with the same diagnostic. The difference is how deep we go.</p>
+        </div>
+
+        <div class="bento">
+          <!-- Deploy (large card) -->
+          <a href="https://deploy.malwaassetfirm.com" class="bento-card bento-deploy">
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+            </div>
+            <div class="bento-tag">AI Operations</div>
+            <h3>MAF Deploy</h3>
+            <p>AI agents that run your back office — scheduling, invoicing, lead follow-up, customer calls. Not a tool. Not a platform. Real work, done for you, on top of ServiceTitan, QuickBooks, and whatever else you already use. You focus on growth.</p>
+            <span class="bento-link">Explore Deploy →</span>
+          </a>
+
+          <!-- Consulting -->
+          <a href="https://scorecard.malwaassetfirm.com" class="bento-card bento-consulting">
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div class="bento-tag">Growth & Ops</div>
+            <h3>Consulting</h3>
+            <p>We diagnose what's holding you back and build the plan to fix it. Pricing, operations, cash flow, team structure.</p>
+            <span class="bento-link">Start with scorecard →</span>
+          </a>
+
+          <!-- M&A Advisory -->
+          <a href="https://scorecard.malwaassetfirm.com" class="bento-card bento-ma">
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 21V7l9-4 9 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 9h.01M15 9h.01"/></svg>
+            </div>
+            <div class="bento-tag">Buy & Sell-Side</div>
+            <h3>Exit Advisory</h3>
+            <p>For owners ready to transition. Valuation, readiness, deal execution.</p>
+            <span class="bento-link">Start with scorecard →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Constraint Principle ── -->
+    <section class="bg-alt">
+      <div class="container">
+        <div class="constraint-statement">
+          <span class="constraint-mark">"</span>
+          <h2>Every service business has one constraint limiting growth.</h2>
+          <p>Most owners try to fix it by working harder. Or hiring more people. Or buying another software tool. None of those solve the constraint — they add more moving parts. We find the constraint, deploy against it, and move to the next one.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── How You Start (journey) ── -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">How You Start</span>
+          <h2>From scorecard to results in four steps.</h2>
+          <p>No pressure. The scorecard is free. Whether we work together or not, you leave knowing what to fix first.</p>
+        </div>
+
+        <div class="journey-flow">
+          <div class="journey-step">
+            <div class="journey-dot"></div>
+            <h3>Scorecard</h3>
+            <p>24 questions against industry benchmarks. Find your constraint. Free, 10 minutes.</p>
+          </div>
+          <div class="journey-step">
+            <div class="journey-dot"></div>
+            <h3>Analysis Call</h3>
+            <p>30 minutes. We review your scorecard and talk through what's actually fixable.</p>
+          </div>
+          <div class="journey-step">
+            <div class="journey-dot"></div>
+            <h3>Audit</h3>
+            <p>Deep dive into your operations. 5 business days. You get a specific plan, not a pitch.</p>
+          </div>
+          <div class="journey-step">
+            <div class="journey-dot"></div>
+            <h3>Deploy</h3>
+            <p>We build and run the work. You see measurable results in 60 days — or you don't pay.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Final CTA ── -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Find your constraint.</h2>
+        <p class="cta-sub">Start with the free scorecard. 10 minutes, no obligation. Whether we work together or not, you leave knowing what to fix first.</p>
+        <a href="https://scorecard.malwaassetfirm.com" class="btn btn-primary btn-lg">Get Your Free Scorecard →</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">Malwa Asset Firm</div>
+      <div class="footer-links">
+        <a href="https://scorecard.malwaassetfirm.com">Scorecard</a>
+        <a href="https://deploy.malwaassetfirm.com">Deploy</a>
+        <a href="https://portal.malwaassetfirm.com">Client Login</a>
+        <a href="mailto:garry@malwaassetfirm.com">garry@malwaassetfirm.com</a>
+      </div>
+      <div class="footer-copy">© 2026 Malwa Asset Firm. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme') || 'light';
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('maf-theme', next);
+    }
+  </script>
+
+</body>
+</html>
