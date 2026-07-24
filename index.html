@@ -24,19 +24,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     /* ── Design Tokens: DARK-FIRST ── */
-    /* Dark is the default (:root). Light is the toggle ([data-theme="light"]). */
     :root {
       --purple: #7170ff; --purple-hover: #828fff; --purple-light: #4a3f8a;
       --terracotta: #f5a623; --terracotta-hover: #ffb838; --terracotta-light: #6b5415;
       --navy: #e2e8f0; --slate: #a8a098;
-      --bg: #15120f; --bg-alt: #1f1b16; --card-bg: #2a2520;
+      --bg: #0d0b09; --bg-alt: #15120f; --card-bg: #2a2520;
       --border: rgba(255,255,255,0.16); --text: #c8c0b8; --heading: #f7f4ee;
       --label: #a8a098;
       --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
       --shadow-md: 0 6px 12px rgba(0,0,0,0.4);
       --shadow-lg: 0 12px 28px rgba(0,0,0,0.5);
       --shadow-xl: 0 24px 64px rgba(0,0,0,0.6);
-      --shadow-hero: 0 30px 80px -12px rgba(0,0,0,0.6), 0 12px 24px rgba(0,0,0,0.3);
+      --shadow-hero: 0 25px 80px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
       --radius: 12px; --radius-sm: 8px; --radius-lg: 16px; --radius-xl: 20px;
       --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
       --font-serif: Georgia, 'Times New Roman', serif;
@@ -53,7 +52,7 @@
       --shadow-md: 0 4px 6px rgba(50,50,93,0.11), 0 1px 3px rgba(0,0,0,0.08);
       --shadow-lg: 0 10px 25px rgba(50,50,93,0.15), 0 4px 10px rgba(0,0,0,0.06);
       --shadow-xl: 0 20px 50px rgba(50,50,93,0.2), 0 8px 20px rgba(0,0,0,0.08);
-      --shadow-hero: 0 30px 80px -12px rgba(50,50,93,0.25), 0 12px 24px rgba(0,0,0,0.06);
+      --shadow-hero: 0 25px 80px -12px rgba(50,50,93,0.12), 0 0 0 1px rgba(0,0,0,0.06);
     }
 
     html { scroll-behavior: smooth; }
@@ -66,6 +65,7 @@
       .radar-poly { animation: none !important; stroke-dashoffset: 0 !important; }
       .radar-dot, .radar-dot-constraint { animation: none !important; opacity: 1 !important; }
       .hero-video video { display: none !important; }
+      .word-anim { opacity: 1 !important; transform: none !important; }
     }
 
     body {
@@ -93,9 +93,40 @@
     }
     .skip-link:focus { top: 16px; }
 
+    /* ── Liquid Glass (from Vex Ventures) ── */
+    .liquid-glass {
+      background: rgba(0, 0, 0, 0.4);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 20%,
+        rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.3) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    [data-theme="light"] .liquid-glass {
+      background: rgba(255, 255, 255, 0.5);
+      background-blend-mode: normal;
+    }
+
     /* ── Typography ── */
-    h1, h2 { font-family: var(--font-serif); font-weight: 400; line-height: 1.1; color: var(--heading); }
-    h1 { font-size: clamp(2.6rem, 6.5vw, 4.5rem); letter-spacing: -0.035em; }
+    h1, h2 { font-family: var(--font-serif); font-weight: 400; line-height: 1.05; color: var(--heading); }
+    h1 { font-size: clamp(2.8rem, 7vw, 5rem); letter-spacing: -0.04em; }
     h2 { font-size: clamp(1.6rem, 3.5vw, 2.1rem); letter-spacing: -0.02em; }
     h1 em, h2 em { font-style: italic; color: var(--terracotta); font-weight: 400; }
     h3 { font-family: var(--font-sans); font-weight: 500; font-size: 1.15rem; color: var(--heading); letter-spacing: -0.01em; }
@@ -122,39 +153,49 @@
     .btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
     .nav-link:focus-visible, .footer-links a:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; border-radius: 2px; }
 
-    /* ── Floating Pill Nav ── */
+    /* ── Liquid Glass Nav (Vex style) ── */
     .nav {
       position: sticky; top: 0; z-index: 100;
-      padding: 16px 0;
+      padding: 16px 24px;
     }
     .nav-pill {
-      background: rgba(42,37,32,0.72); backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid var(--border);
-      border-radius: 100px; padding: 10px 14px 10px 24px;
-      box-shadow: var(--shadow-sm);
+      background: rgba(0, 0, 0, 0.4);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: var(--radius-lg); padding: 10px 14px 10px 24px;
       display: flex; justify-content: space-between; align-items: center;
       max-width: 1080px; margin: 0 auto;
-      transition: box-shadow 0.3s, border-color 0.3s;
+      position: relative; overflow: hidden;
     }
-    .nav-pill:hover { box-shadow: var(--shadow-md); }
+    .nav-pill::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: inherit; padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 20%,
+        rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.3) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+    }
     [data-theme="light"] .nav-pill {
-      background: rgba(250,249,247,0.72);
-      border-color: rgba(236,232,224,0.6);
+      background: rgba(255, 255, 255, 0.5);
+      background-blend-mode: normal;
     }
-    .nav-logo { font-weight: 600; font-size: 1rem; color: var(--heading); letter-spacing: -0.02em; }
+    .nav-logo { font-weight: 600; font-size: 1rem; color: var(--heading); letter-spacing: -0.02em; position: relative; z-index: 1; }
     .nav-logo span { color: var(--purple); font-weight: 400; }
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; position: relative; z-index: 1; }
     .nav-link {
       font-size: 0.85rem; color: var(--text); font-weight: 500; transition: color 0.2s;
-      padding: 6px 12px; border-radius: 100px;
+      padding: 6px 12px; border-radius: var(--radius-sm);
     }
-    .nav-link:hover { color: var(--purple); background: rgba(113,112,255,0.08); }
-    [data-theme="light"] .nav-link:hover { background: rgba(83,58,253,0.06); }
+    .nav-link:hover { color: var(--heading); }
     @media (max-width: 640px) { .nav-link { display: none; } }
 
     .theme-toggle {
-      background: none; border: 1px solid var(--border); border-radius: 100px;
+      background: none; border: 1px solid var(--border); border-radius: var(--radius-sm);
       color: var(--text); cursor: pointer; width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
       transition: all 0.25s;
@@ -168,90 +209,113 @@
     [data-theme="light"] .icon-moon { display: block; }
 
     .nav-cta {
-      padding: 8px 18px; border-radius: 100px;
+      padding: 8px 18px; border-radius: var(--radius-sm);
       font-family: var(--font-sans); font-weight: 500; font-size: 0.85rem;
-      background: var(--purple); color: #fff; transition: all 0.13s;
+      background: var(--heading); color: var(--bg); transition: all 0.13s;
     }
-    .nav-cta:hover { background: var(--purple-hover); color: #fff; transform: translateY(-1px); }
+    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
 
-    /* ── Hero ── */
+    /* ── Hero — Full-screen video, bottom-anchored content (Vex style) ── */
     .hero {
-      padding: 60px 0 120px; position: relative; overflow: hidden;
-      min-height: 90vh; display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      min-height: 100vh; display: flex; flex-direction: column;
     }
 
-    /* Video background */
+    /* Video background — NO overlay (Vex: "video plays raw with no dimming") */
     .hero-video {
       position: absolute; inset: 0; z-index: 0; overflow: hidden;
     }
     .hero-video video {
       width: 100%; height: 100%; object-fit: cover; object-position: center;
     }
-    .hero-overlay {
-      position: absolute; inset: 0; z-index: 1; pointer-events: none;
-      background: linear-gradient(165deg, rgba(21,18,15,0.82) 0%, rgba(21,18,15,0.65) 50%, rgba(21,18,15,0.82) 100%);
+    /* Subtle gradient at very bottom for text legibility — not a full overlay */
+    .hero-video::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+      background: linear-gradient(to top, rgba(13,11,9,0.85) 0%, rgba(13,11,9,0.3) 50%, transparent 100%);
+      pointer-events: none; z-index: 1;
     }
-    [data-theme="light"] .hero-overlay {
-      background: linear-gradient(165deg, rgba(250,249,247,0.88) 0%, rgba(245,240,232,0.78) 50%, rgba(250,249,247,0.88) 100%);
+    [data-theme="light"] .hero-video::after {
+      background: linear-gradient(to top, rgba(250,249,247,0.85) 0%, rgba(250,249,247,0.3) 50%, transparent 100%);
     }
     @media (prefers-reduced-motion: reduce) {
       .hero-video video { display: none; }
-      .hero-overlay { background: var(--bg); }
+      .hero-video::after { display: none; }
+      .hero { background: var(--bg); }
     }
 
-    .hero .container {
-      display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px;
-      align-items: center; position: relative; z-index: 2;
-      width: 100%;
+    /* Hero content pushed to bottom (Vex: "flex-1 flex flex-col justify-end") */
+    .hero-content {
+      position: relative; z-index: 2;
+      flex: 1; display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 24px 80px; max-width: 1080px; margin: 0 auto; width: 100%;
     }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 100px;
+      border: 1px solid var(--border); background: rgba(13,11,9,0.6);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
+      color: var(--terracotta); letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 24px; width: fit-content;
+    }
+    [data-theme="light"] .hero-badge { background: rgba(255,255,255,0.6); }
+    .hero h1 { margin-bottom: 20px; max-width: 700px; }
+    .hero-sub {
+      font-size: 1.12rem; color: var(--text); opacity: 0.85;
+      max-width: 520px; margin-bottom: 36px; line-height: 1.6;
+    }
+    .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-trust {
+      font-size: 0.82rem; color: var(--slate); opacity: 0.7;
+      display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+    }
+    .hero-trust .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--slate); opacity: 0.5; }
 
-    /* Hero entrance animations */
+    /* Hero entrance — word-by-word stagger (Vex inspired, accessible) */
     .hero-anim {
-      opacity: 0; transform: translateY(28px);
+      opacity: 0; transform: translateY(20px);
       animation: heroFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
     @keyframes heroFadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
-    .hero-eyebrow { margin-bottom: 24px; animation-delay: 0.15s; }
-    .hero h1 { margin-bottom: 24px; animation-delay: 0.25s; }
-    .hero-sub {
-      font-size: 1.12rem; color: var(--text); opacity: 0.85;
-      max-width: 500px; margin-bottom: 36px; line-height: 1.6;
-      animation-delay: 0.4s;
-    }
-    .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; animation-delay: 0.55s; }
-    .hero-trust {
-      font-size: 0.82rem; color: var(--slate); opacity: 0.7;
-      display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
-      animation-delay: 0.7s;
-    }
-    .hero-trust .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--slate); opacity: 0.5; }
-    .hero-chart-wrap { animation-delay: 0.5s; }
+    .hero-badge { animation-delay: 0.2s; }
+    .hero h1 { animation-delay: 0.35s; }
+    .hero-sub { animation-delay: 0.5s; }
+    .hero-cta-row { animation-delay: 0.65s; }
+    .hero-trust { animation-delay: 0.8s; }
     @media (prefers-reduced-motion: reduce) {
       .hero-anim { opacity: 1; transform: none; animation: none; }
     }
 
-    /* ── Scorecard Radar Chart (the star) ── */
-    .hero-chart-wrap { position: relative; }
-    .hero-chart-wrap::after {
-      content: ''; position: absolute; bottom: -24px; left: 0%; right: 0%;
-      height: 100%; background: radial-gradient(ellipse at 50% 40%, rgba(245,166,35,0.10) 0%, transparent 60%);
-      filter: blur(20px); z-index: -1; pointer-events: none;
+    /* ── Scorecard Radar Chart (Nexora: frosted glass + dashboard shadow) ── */
+    .hero-chart-wrap {
+      position: absolute; top: 50%; right: 24px; transform: translateY(-50%);
+      width: 380px; z-index: 2;
+      animation: chartSlideIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
     }
-    [data-theme="light"] .hero-chart-wrap::after { background: radial-gradient(ellipse at center, rgba(50,50,93,0.15) 0%, transparent 70%); }
-    .scorecard-card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: var(--radius-xl); padding: 28px 24px 24px;
-      box-shadow: var(--shadow-hero); position: relative;
-      animation: cardFloat 6s ease-in-out infinite;
-    }
-    @keyframes cardFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    @keyframes chartSlideIn {
+      from { opacity: 0; transform: translateY(-50%) translateX(40px); }
+      to { opacity: 1; transform: translateY(-50%) translateX(0); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .scorecard-card { animation: none; }
+      .hero-chart-wrap { animation: none; opacity: 1; }
+    }
+    @media (max-width: 900px) {
+      .hero-chart-wrap { position: relative; top: auto; right: auto; transform: none;
+        max-width: 400px; margin: 48px auto 0; width: 100%; }
+    }
+    .scorecard-card {
+      background: rgba(42, 37, 32, 0.5);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-xl); padding: 28px 24px 24px;
+      box-shadow: var(--shadow-hero); position: relative;
+    }
+    [data-theme="light"] .scorecard-card {
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
     .scorecard-card-header {
       display: flex; justify-content: space-between; align-items: flex-start;
@@ -276,7 +340,7 @@
       fill: rgba(113,112,255,0.12); stroke: var(--purple); stroke-width: 2;
       stroke-linejoin: round; transition: fill 0.3s;
       stroke-dasharray: 600; stroke-dashoffset: 600;
-      animation: radarDraw 2s ease-out 1s forwards;
+      animation: radarDraw 2s ease-out 1.2s forwards;
     }
     [data-theme="light"] .radar-poly { fill: rgba(83,58,253,0.10); }
     @keyframes radarDraw {
@@ -288,12 +352,12 @@
     .radar-dot { fill: var(--purple); stroke: var(--card-bg); stroke-width: 2;
       opacity: 0; animation: dotPop 0.4s ease-out forwards;
     }
-    .radar-dot:nth-of-type(1) { animation-delay: 1.8s; }
-    .radar-dot:nth-of-type(2) { animation-delay: 1.9s; }
-    .radar-dot:nth-of-type(3) { animation-delay: 2s; }
-    .radar-dot:nth-of-type(4) { animation-delay: 2.1s; }
-    .radar-dot:nth-of-type(5) { animation-delay: 2.2s; }
-    .radar-dot:nth-of-type(6) { animation-delay: 2.3s; }
+    .radar-dot:nth-of-type(1) { animation-delay: 2s; }
+    .radar-dot:nth-of-type(2) { animation-delay: 2.1s; }
+    .radar-dot:nth-of-type(3) { animation-delay: 2.2s; }
+    .radar-dot:nth-of-type(4) { animation-delay: 2.3s; }
+    .radar-dot:nth-of-type(5) { animation-delay: 2.4s; }
+    .radar-dot:nth-of-type(6) { animation-delay: 2.5s; }
     @keyframes dotPop {
       0% { opacity: 0; transform: scale(0); }
       60% { transform: scale(1.3); }
@@ -303,7 +367,7 @@
       .radar-dot { animation: none; opacity: 1; }
     }
     .radar-dot-constraint { fill: var(--terracotta); stroke: var(--card-bg); stroke-width: 2; r: 6;
-      opacity: 0; animation: dotPop 0.5s ease-out 2.4s forwards;
+      opacity: 0; animation: dotPop 0.5s ease-out 2.6s forwards;
     }
     @media (prefers-reduced-motion: reduce) {
       .radar-dot-constraint { animation: none; opacity: 1; }
@@ -322,7 +386,7 @@
     [data-theme="light"] .scorecard-insight { background: rgba(184,130,26,0.08); border-color: rgba(184,130,26,0.2); }
 
     /* ── Sections ── */
-    section { padding: 96px 0; }
+    section { padding: 96px 0; position: relative; }
     .section-header { max-width: 620px; margin: 0 auto 56px; }
     .section-header h2 { margin-bottom: 14px; }
     .section-header p { font-size: 1.02rem; color: var(--text); opacity: 0.85; }
@@ -464,9 +528,8 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .hero .container { grid-template-columns: 1fr; gap: 48px; }
-      .hero-chart-wrap { max-width: 400px; margin: 0 auto; width: 100%; }
-      .hero { min-height: auto; padding: 40px 0 80px; }
+      .hero { min-height: auto; padding: 100px 0 80px; }
+      .hero-content { position: relative; }
     }
     @media (max-width: 768px) {
       section { padding: 64px 0; }
@@ -486,7 +549,7 @@
       .journey-dot { margin: 0; position: absolute; left: 0; top: 0; }
     }
     @media (max-width: 480px) {
-      .hero h1 { font-size: 2.2rem; }
+      .hero h1 { font-size: 2.4rem; }
       .hero-cta-row { flex-direction: column; }
       .hero-cta-row .btn { width: 100%; }
     }
@@ -497,7 +560,7 @@
   <!-- ── Skip Link ── -->
   <a href="#what-we-do" class="skip-link">Skip to content</a>
 
-  <!-- ── Floating Pill Nav ── -->
+  <!-- ── Liquid Glass Nav ── -->
   <nav class="nav" aria-label="Main navigation">
     <div class="nav-pill">
       <a href="/" class="nav-logo" style="color:inherit;text-decoration:none;">Malwa <span>Asset Firm</span></a>
@@ -514,76 +577,75 @@
   </nav>
 
   <main>
-    <!-- ── Hero ── -->
+    <!-- ── Hero — Full-screen video, bottom-anchored content ── -->
     <section class="hero">
       <div class="hero-video" aria-hidden="true">
         <video autoplay muted loop playsinline preload="auto"
           src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260324_151826_c7218672-6e92-402c-9e45-f1e0f454bdc4.mp4">
         </video>
       </div>
-      <div class="hero-overlay" aria-hidden="true"></div>
 
-      <div class="container">
-        <div class="hero-text">
-          <div class="hero-eyebrow eyebrow hero-anim">Malwa Asset Firm</div>
-          <h1 class="hero-anim">We find what's <em>blocking</em> your growth — and fix it.</h1>
-          <p class="hero-sub hero-anim">Growth consulting, AI-powered operations, and exit advisory for service businesses. Start with a free 6-vector scorecard. Find your one constraint in 10 minutes.</p>
-          <div class="hero-cta-row hero-anim">
-            <a href="https://scorecard.malwaassetfirm.com" class="btn btn-primary btn-lg">Get Your Free Scorecard →</a>
-            <a href="https://deploy.malwaassetfirm.com" class="btn btn-outline btn-lg">See How Deploy Works</a>
+      <!-- Scorecard card — floating right, frosted glass (Nexora style) -->
+      <div class="hero-chart-wrap">
+        <div class="scorecard-card">
+          <div class="scorecard-card-header">
+            <div class="scorecard-card-title">6-Vector Scorecard</div>
+            <div class="scorecard-card-badge">Sample</div>
           </div>
-          <div class="hero-trust hero-anim">
-            <span>For service businesses $1M–$25M</span>
-            <span class="dot"></span>
-            <span>10 minutes</span>
-            <span class="dot"></span>
-            <span>No obligation</span>
+          <div class="scorecard-card-sub">Growth diagnostics across six business vectors</div>
+
+          <svg class="radar-svg" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" aria-label="6-vector radar chart showing sample scores">
+            <polygon class="radar-grid" points="160,235 224.95,197.5 224.95,122.5 160,85 95.05,122.5 95.05,197.5"/>
+            <polygon class="radar-grid" points="160,210 203.3,185 203.3,135 160,110 116.7,135 116.7,185"/>
+            <polygon class="radar-grid" points="160,185 181.65,172.5 181.65,147.5 160,135 138.35,147.5 138.35,172.5"/>
+            <line class="radar-axis" x1="160" y1="160" x2="160" y2="60"/>
+            <line class="radar-axis" x1="160" y1="160" x2="246.6" y2="110"/>
+            <line class="radar-axis" x1="160" y1="160" x2="246.6" y2="210"/>
+            <line class="radar-axis" x1="160" y1="160" x2="160" y2="260"/>
+            <line class="radar-axis" x1="160" y1="160" x2="73.4" y2="210"/>
+            <line class="radar-axis" x1="160" y1="160" x2="73.4" y2="110"/>
+            <polygon class="radar-poly" points="160,95 201.57,136 222.35,196 160,198 112.37,187.5 90.72,120"/>
+            <circle class="radar-dot" cx="160" cy="95" r="4"/>
+            <circle class="radar-dot" cx="201.57" cy="136" r="4"/>
+            <circle class="radar-dot" cx="222.35" cy="196" r="4"/>
+            <circle class="radar-dot-constraint" cx="160" cy="198" r="6"/>
+            <circle class="radar-dot" cx="112.37" cy="187.5" r="4"/>
+            <circle class="radar-dot" cx="90.72" cy="120" r="4"/>
+            <text class="radar-label" x="160" y="48" text-anchor="middle">Demand</text>
+            <text class="radar-score" x="160" y="60" text-anchor="middle">65</text>
+            <text class="radar-label" x="258" y="106" text-anchor="start">Conversion</text>
+            <text class="radar-score" x="258" y="118" text-anchor="start">48</text>
+            <text class="radar-label" x="258" y="218" text-anchor="start">Delivery</text>
+            <text class="radar-score" x="258" y="230" text-anchor="start">72</text>
+            <text class="radar-label radar-label-constraint" x="160" y="278" text-anchor="middle">Cash Flow</text>
+            <text class="radar-score radar-score-constraint" x="160" y="290" text-anchor="middle">38</text>
+            <text class="radar-label" x="62" y="218" text-anchor="end">Retention</text>
+            <text class="radar-score" x="62" y="230" text-anchor="end">55</text>
+            <text class="radar-label" x="62" y="106" text-anchor="end">Support</text>
+            <text class="radar-score" x="62" y="118" text-anchor="end">80</text>
+          </svg>
+
+          <div class="scorecard-insight">
+            <strong>Cash Flow is your constraint.</strong> That's where we start.
           </div>
         </div>
+      </div>
 
-        <div class="hero-chart-wrap hero-anim">
-          <div class="scorecard-card">
-            <div class="scorecard-card-header">
-              <div class="scorecard-card-title">6-Vector Scorecard</div>
-              <div class="scorecard-card-badge">Sample</div>
-            </div>
-            <div class="scorecard-card-sub">Growth diagnostics across six business vectors</div>
-
-            <svg class="radar-svg" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" aria-label="6-vector radar chart showing sample scores">
-              <polygon class="radar-grid" points="160,235 224.95,197.5 224.95,122.5 160,85 95.05,122.5 95.05,197.5"/>
-              <polygon class="radar-grid" points="160,210 203.3,185 203.3,135 160,110 116.7,135 116.7,185"/>
-              <polygon class="radar-grid" points="160,185 181.65,172.5 181.65,147.5 160,135 138.35,147.5 138.35,172.5"/>
-              <line class="radar-axis" x1="160" y1="160" x2="160" y2="60"/>
-              <line class="radar-axis" x1="160" y1="160" x2="246.6" y2="110"/>
-              <line class="radar-axis" x1="160" y1="160" x2="246.6" y2="210"/>
-              <line class="radar-axis" x1="160" y1="160" x2="160" y2="260"/>
-              <line class="radar-axis" x1="160" y1="160" x2="73.4" y2="210"/>
-              <line class="radar-axis" x1="160" y1="160" x2="73.4" y2="110"/>
-              <polygon class="radar-poly" points="160,95 201.57,136 222.35,196 160,198 112.37,187.5 90.72,120"/>
-              <circle class="radar-dot" cx="160" cy="95" r="4"/>
-              <circle class="radar-dot" cx="201.57" cy="136" r="4"/>
-              <circle class="radar-dot" cx="222.35" cy="196" r="4"/>
-              <circle class="radar-dot-constraint" cx="160" cy="198" r="6"/>
-              <circle class="radar-dot" cx="112.37" cy="187.5" r="4"/>
-              <circle class="radar-dot" cx="90.72" cy="120" r="4"/>
-              <text class="radar-label" x="160" y="48" text-anchor="middle">Demand</text>
-              <text class="radar-score" x="160" y="60" text-anchor="middle">65</text>
-              <text class="radar-label" x="258" y="106" text-anchor="start">Conversion</text>
-              <text class="radar-score" x="258" y="118" text-anchor="start">48</text>
-              <text class="radar-label" x="258" y="218" text-anchor="start">Delivery</text>
-              <text class="radar-score" x="258" y="230" text-anchor="start">72</text>
-              <text class="radar-label radar-label-constraint" x="160" y="278" text-anchor="middle">Cash Flow</text>
-              <text class="radar-score radar-score-constraint" x="160" y="290" text-anchor="middle">38</text>
-              <text class="radar-label" x="62" y="218" text-anchor="end">Retention</text>
-              <text class="radar-score" x="62" y="230" text-anchor="end">55</text>
-              <text class="radar-label" x="62" y="106" text-anchor="end">Support</text>
-              <text class="radar-score" x="62" y="118" text-anchor="end">80</text>
-            </svg>
-
-            <div class="scorecard-insight">
-              <strong>Cash Flow is your constraint.</strong> That's where we start.
-            </div>
-          </div>
+      <!-- Hero content — bottom-anchored (Vex style) -->
+      <div class="hero-content">
+        <div class="hero-badge hero-anim">Malwa Asset Firm</div>
+        <h1 class="hero-anim">We find what's <em>blocking</em> your growth — and fix it.</h1>
+        <p class="hero-sub hero-anim">Growth consulting, AI-powered operations, and exit advisory for service businesses. Start with a free 6-vector scorecard. Find your one constraint in 10 minutes.</p>
+        <div class="hero-cta-row hero-anim">
+          <a href="https://scorecard.malwaassetfirm.com" class="btn btn-primary btn-lg">Get Your Free Scorecard →</a>
+          <a href="https://deploy.malwaassetfirm.com" class="btn btn-outline btn-lg">See How Deploy Works</a>
+        </div>
+        <div class="hero-trust hero-anim">
+          <span>For service businesses $1M–$25M</span>
+          <span class="dot"></span>
+          <span>10 minutes</span>
+          <span class="dot"></span>
+          <span>No obligation</span>
         </div>
       </div>
     </section>
