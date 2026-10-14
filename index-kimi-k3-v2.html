@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malwa Asset Firm — We Find What's Blocking Your Growth</title>
+<meta name="description" content="A boutique growth consulting firm for service businesses. We find the one constraint limiting your growth — and fix it. Free 6-vector diagnostic, 10 minutes.">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   DESIGN DIRECTION CONTRACT — see HTML comment at top of <body>
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Reset & tokens ─────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  /* Dark blueprint ground */
+  --bg:#0B1220;
+  --bg-deep:#070C16;
+  --surface:#0F1A2E;
+  --surface-raised:#142238;
+  /* Grid lines — the graph paper */
+  --grid-major:rgba(56,130,180,0.12);
+  --grid-minor:rgba(56,130,180,0.06);
+  /* Amber — conduit, caution, the trades */
+  --amber:#E8A534;
+  --amber-bright:#F5B842;
+  --amber-dim:#9A6E20;
+  --amber-glow:rgba(232,165,52,0.15);
+  /* Ink — architectural lettering */
+  --ink:#D4DCE8;
+  --ink-secondary:#8B9BB4;
+  --ink-muted:#4A5C7A;
+  /* Alert — the constraint */
+  --alert:#E45A3A;
+  --alert-dim:rgba(228,90,58,0.15);
+  /* Pass — cleared items */
+  --pass:#3DA56F;
+  --pass-dim:rgba(61,165,111,0.12);
+  /* Lines */
+  --line:rgba(56,130,180,0.25);
+  --line-strong:rgba(56,130,180,0.45);
+  /* Type */
+  --font-display:'Oswald','Bebas Neue','Arial Narrow',sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-mono:'JetBrains Mono','SF Mono','Courier New',monospace;
+  /* Spacing */
+  --space-xs:0.5rem;
+  --space-s:1rem;
+  --space-m:1.5rem;
+  --space-l:2.5rem;
+  --space-xl:4rem;
+  --space-2xl:6rem;
+  /* Layout */
+  --maxw:1200px;
+  --gutter:2rem;
+  /* Radius */
+  --r:2px;
+  --r-lg:4px;
+}
+
+[data-theme="light"]{
+  --bg:#F2EEE5;
+  --bg-deep:#E8E3D8;
+  --surface:#FFFFFF;
+  --surface-raised:#F8F5EF;
+  --grid-major:rgba(40,80,120,0.10);
+  --grid-minor:rgba(40,80,120,0.05);
+  --amber:#B87A1A;
+  --amber-bright:#D99526;
+  --amber-dim:#A06A18;
+  --amber-glow:rgba(184,122,26,0.12);
+  --ink:#1A1F2E;
+  --ink-secondary:#4A5468;
+  --ink-muted:#8A92A6;
+  --alert:#C44520;
+  --alert-dim:rgba(196,69,32,0.12);
+  --pass:#2D8659;
+  --pass-dim:rgba(45,134,89,0.10);
+  --line:rgba(40,80,120,0.20);
+  --line-strong:rgba(40,80,120,0.35);
+}
+
+/* ── Base ───────────────────────────────────────────────────────── */
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* Blueprint grid — the ground, not decoration */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(var(--grid-major) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-major) 1px,transparent 1px),
+    linear-gradient(var(--grid-minor) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-minor) 1px,transparent 1px);
+  background-size:80px 80px,80px 80px,16px 16px,16px 16px;
+  pointer-events:none;
+  z-index:0;
+}
+
+main,header,footer,nav,section{position:relative;z-index:1}
+
+a{color:var(--amber);text-decoration:none;transition:color 130ms ease-out}
+a:hover{color:var(--amber-bright)}
+a:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:var(--r)}
+
+/* ── Skip link ──────────────────────────────────────────────────── */
+.skip{
+  position:absolute;
+  top:-100px;
+  left:0;
+  background:var(--amber);
+  color:var(--bg-deep);
+  padding:0.75rem 1.5rem;
+  font-weight:700;
+  font-size:0.875rem;
+  z-index:1000;
+  transition:top 130ms ease-out;
+}
+.skip:focus{top:0}
+
+/* ── Typography ─────────────────────────────────────────────────── */
+.display{
+  font-family:var(--font-display);
+  font-weight:600;
+  letter-spacing:-0.02em;
+  line-height:0.95;
+  text-transform:uppercase;
+}
+.mono{font-family:var(--font-mono);font-feature-settings:"tnum"}
+.label{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ink-muted);
+}
+
+/* ── Layout primitives ──────────────────────────────────────────── */
+.container{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.section{padding:var(--space-2xl) 0}
+.rule{border:none;border-top:1px solid var(--line);margin:0}
+
+/* ── Title block (plan sheet header) ────────────────────────────── */
+.titleblock{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:2rem;
+  align-items:center;
+  padding:0.75rem var(--gutter);
+  border-bottom:1px solid var(--line);
+  background:var(--bg-deep);
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(8px);
+}
+.titleblock__mark{
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+}
+.titleblock__logo{
+  width:36px;
+  height:36px;
+  flex-shrink:0;
+}
+.titleblock__name{
+  font-family:var(--font-display);
+  font-size:1.0625rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+  color:var(--ink);
+  line-height:1;
+}
+.titleblock__sub{
+  font-family:var(--font-mono);
+  font-size:0.625rem;
+  color:var(--ink-muted);
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  margin-top:2px;
+}
+.titleblock__nav{
+  display:flex;
+  gap:1.75rem;
+  align-items:center;
+}
+.titleblock__nav a{
+  font-size:0.8125rem;
+  color:var(--ink-secondary);
+  font-weight:500;
+  transition:color 130ms ease-out;
+}
+.titleblock__nav a:hover{color:var(--amber)}
+
+.titleblock__actions{display:flex;align-items:center;gap:0.75rem}
+
+.theme-toggle{
+  width:36px;
+  height:36px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  color:var(--ink-secondary);
+  cursor:pointer;
+  border-radius:var(--r);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:border-color 130ms ease-out,color 130ms ease-out;
+}
+.theme-toggle:hover{border-color:var(--amber);color:var(--amber)}
+.theme-toggle:active{transform:scale(0.97)}
+.theme-toggle svg{width:16px;height:16px}
+
+/* ── Buttons ────────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0.75rem 1.5rem;
+  font-size:0.875rem;
+  font-weight:600;
+  border-radius:var(--r);
+  border:1px solid transparent;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all 130ms ease-out;
+  min-height:44px;
+  line-height:1;
+}
+.btn:active{transform:scale(0.97)}
+.btn--primary{
+  background:var(--amber);
+  color:var(--bg-deep);
+  border-color:var(--amber);
+}
+.btn--primary:hover{
+  background:var(--amber-bright);
+  border-color:var(--amber-bright);
+  color:var(--bg-deep);
+}
+.btn--ghost{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--line-strong);
+}
+.btn--ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+/* ── Hero: the calculation sheet ────────────────────────────────── */
+.hero{
+  padding:var(--space-2xl) 0 var(--space-xl);
+  border-bottom:1px solid var(--line);
+}
+.hero__grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:var(--space-2xl);
+  align-items:start;
+}
+
+.hero__sheet-ref{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  color:var(--ink-muted);
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  margin-bottom:var(--space-l);
+  display:flex;
+  gap:2rem;
+  align-items:center;
+}
+.hero__sheet-ref span{display:flex;gap:0.5rem;align-items:center}
+.hero__sheet-ref .dot{width:6px;height:6px;background:var(--amber);border-radius:50%}
+
+.hero__headline{
+  font-family:var(--font-display);
+  font-size:clamp(2.5rem,6vw,5rem);
+  font-weight:700;
+  line-height:0.92;
+  letter-spacing:-0.03em;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin-bottom:var(--space-l);
+}
+.hero__headline .amber{color:var(--amber)}
+.hero__headline .strike{
+  position:relative;
+  display:inline-block;
+}
+.hero__headline .strike::after{
+  content:'';
+  position:absolute;
+  left:-2%;
+  right:-2%;
+  top:52%;
+  height:4px;
+  background:var(--alert);
+  transform:scaleX(0);
+  transform-origin:left;
+  animation:strikeIn 800ms 400ms ease-out forwards;
+}
+@keyframes strikeIn{to{transform:scaleX(1)}}
+
+.hero__sub{
+  font-size:1.0625rem;
+  line-height:1.55;
+  color:var(--ink-secondary);
+  max-width:42ch;
+  margin-bottom:var(--space-l);
+}
+
+.hero__actions{
+  display:flex;
+  gap:0.75rem;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:var(--space-xl);
+}
+
+.hero__meta{
+  display:flex;
+  gap:2rem;
+  padding-top:var(--space-l);
+  border-top:1px solid var(--line);
+  flex-wrap:wrap;
+}
+.hero__meta-item{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.hero__meta-val{
+  font-family:var(--font-mono);
+  font-size:1rem;
+  font-weight:600;
+  color:var(--ink);
+}
+.hero__meta-key{
+  font-family:var(--font-mono);
+  font-size:0.625rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
+
+/* ── Load calculation table (the scorecard) ─────────────────────── */
+.loadcalc{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+}
+
+.loadcalc__header{
+  display:grid;
+  grid-template-columns:1fr auto auto auto;
+  gap:1rem;
+  padding:0.75rem 1.25rem;
+  background:var(--surface-raised);
+  border-bottom:1px solid var(--line);
+  align-items:center;
+}
+.loadcalc__title{
+  font-family:var(--font-mono);
+  font-size:0.75rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  color:var(--ink);
+}
+.loadcalc__col-label{
+  font-family:var(--font-mono);
+  font-size:0.625rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  text-align:right;
+  width:3.5rem;
+}
+.loadcalc__body{padding:0.5rem 0}
+
+.loadcalc__row{
+  display:grid;
+  grid-template-columns:1fr auto auto auto;
+  gap:1rem;
+  padding:0.625rem 1.25rem;
+  align-items:center;
+  transition:background 130ms ease-out;
+}
+.loadcalc__row:hover{background:var(--surface-raised)}
+.loadcalc__row--constraint{
+  background:var(--alert-dim);
+  border-left:3px solid var(--alert);
+  padding-left:calc(1.25rem - 3px);
+}
+.loadcalc__row--constraint:hover{background:rgba(228,90,58,0.20)}
+
+.loadcalc__vector{
+  display:flex;
+  align-items:center;
+  gap:0.625rem;
+}
+.loadcalc__vector-icon{width:20px;height:20px;flex-shrink:0;opacity:0.7}
+.loadcalc__row--constraint .loadcalc__vector-icon{opacity:1;color:var(--alert)}
+.loadcalc__vector-name{
+  font-size:0.875rem;
+  font-weight:500;
+  color:var(--ink);
+}
+.loadcalc__row--constraint .loadcalc__vector-name{color:var(--alert);font-weight:600}
+
+.loadcalc__score{
+  font-family:var(--font-mono);
+  font-size:0.875rem;
+  font-weight:600;
+  color:var(--ink);
+  text-align:right;
+  width:3.5rem;
+}
+.loadcalc__row--constraint .loadcalc__score{color:var(--alert)}
+
+.loadcalc__bar{
+  width:80px;
+  height:6px;
+  background:var(--bg-deep);
+  border-radius:1px;
+  overflow:hidden;
+  position:relative;
+}
+.loadcalc__bar-fill{
+  height:100%;
+  border-radius:1px;
+  transition:width 600ms ease-out;
+}
+.loadcalc__bar-fill--pass{background:var(--pass)}
+.loadcalc__bar-fill--warn{background:var(--amber)}
+.loadcalc__bar-fill--alert{background:var(--alert)}
+
+.loadcalc__status{
+  font-family:var(--font-mono);
+  font-size:0.625rem;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  color:var(--ink-muted);
+  width:3.5rem;
+  text-align:right;
+}
+.loadcalc__row--constraint .loadcalc__status{color:var(--alert);font-weight:600}
+
+.loadcalc__footer{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:1rem;
+  padding:0.75rem 1.25rem;
+  background:var(--surface-raised);
+  border-top:1px solid var(--line);
+  align-items:center;
+}
+.loadcalc__footer-label{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+}
+.loadcalc__footer-value{
+  font-family:var(--font-mono);
+  font-size:0.875rem;
+  font-weight:600;
+  color:var(--alert);
+}
+
+/* ── Radar gauge cluster ────────────────────────────────────────── */
+.radar-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:var(--space-s);
+  padding:var(--space-m);
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+}
+.radar-wrap__title{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
+.radar-svg{width:100%;max-width:320px;height:auto}
+
+/* ── Section heading ────────────────────────────────────────────── */
+.sec-heading{
+  display:flex;
+  align-items:baseline;
+  gap:1rem;
+  margin-bottom:var(--space-xl);
+}
+.sec-heading__ref{
+  font-family:var(--font-mono);
+  font-size:0.75rem;
+  color:var(--amber);
+  font-weight:600;
+  letter-spacing:0.06em;
+}
+.sec-heading__title{
+  font-family:var(--font-display);
+  font-size:clamp(1.75rem,3.5vw,2.75rem);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:-0.02em;
+  line-height:1;
+  color:var(--ink);
+}
+
+/* ── Services: spec sheet layout ────────────────────────────────── */
+.services{padding:var(--space-2xl) 0;border-bottom:1px solid var(--line)}
+
+.services__list{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+}
+
+.service{
+  display:grid;
+  grid-template-columns:auto 1fr 1fr auto;
+  gap:2rem;
+  padding:var(--space-l) var(--space-l);
+  background:var(--surface);
+  align-items:start;
+  transition:background 130ms ease-out;
+}
+.service:hover{background:var(--surface-raised)}
+.service--primary{
+  background:var(--surface-raised);
+  grid-template-columns:auto 1fr 1.5fr auto;
+}
+.service--primary:hover{background:var(--surface)}
+
+.service__spec{
+  display:flex;
+  flex-direction:column;
+  gap:0.25rem;
+  min-width:100px;
+}
+.service__spec-num{
+  font-family:var(--font-mono);
+  font-size:1.5rem;
+  font-weight:600;
+  color:var(--amber);
+  line-height:1;
+}
+.service__spec-tag{
+  font-family:var(--font-mono);
+  font-size:0.625rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
+
+.service__name{
+  font-family:var(--font-display);
+  font-size:1.5rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:-0.01em;
+  line-height:1.05;
+  color:var(--ink);
+}
+.service--primary .service__name{font-size:2rem}
+.service__tagline{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  margin-top:0.5rem;
+}
+
+.service__desc{
+  font-size:0.9375rem;
+  line-height:1.6;
+  color:var(--ink-secondary);
+}
+.service__desc strong{color:var(--ink);font-weight:600}
+
+.service__link{
+  display:inline-flex;
+  align-items:center;
+  gap:0.375rem;
+  font-size:0.8125rem;
+  font-weight:600;
+  color:var(--amber);
+  white-space:nowrap;
+  margin-top:0.75rem;
+  transition:gap 130ms ease-out;
+}
+.service__link:hover{gap:0.625rem}
+.service__link svg{width:14px;height:14px}
+
+/* ── Constraint principle: editorial ────────────────────────────── */
+.principle{
+  padding:var(--space-2xl) 0;
+  border-bottom:1px solid var(--line);
+}
+.principle__grid{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:var(--space-2xl);
+  align-items:start;
+}
+.principle__body{
+  font-size:1.0625rem;
+  line-height:1.7;
+  color:var(--ink-secondary);
+  max-width:52ch;
+}
+.principle__body p{margin-bottom:var(--space-m)}
+.principle__body p:first-child{
+  font-size:1.25rem;
+  color:var(--ink);
+  line-height:1.5;
+}
+.principle__body strong{color:var(--ink);font-weight:600}
+.principle__body .amber-text{color:var(--amber);font-weight:600}
+
+/* Diagram: the constraint concept */
+.constraint-diagram{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:var(--space-l);
+  position:relative;
+}
+.constraint-diagram__title{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  margin-bottom:var(--space-m);
+}
+.constraint-diagram__svg{width:100%;height:auto}
+
+/* ── Journey: 4-step work order ─────────────────────────────────── */
+.journey{padding:var(--space-2xl) 0;border-bottom:1px solid var(--line)}
+
+.workorder{
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+}
+.workorder__header{
+  display:grid;
+  grid-template-columns:1fr auto auto auto;
+  gap:1.5rem;
+  padding:0.75rem var(--space-l);
+  background:var(--surface-raised);
+  border-bottom:1px solid var(--line);
+  align-items:center;
+}
+.workorder__header-label{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+}
+.workorder__header-val{
+  font-family:var(--font-mono);
+  font-size:0.75rem;
+  color:var(--ink);
+  font-weight:500;
+}
+
+.workorder__steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--line);
+}
+.step{
+  background:var(--surface);
+  padding:var(--space-l);
+  display:flex;
+  flex-direction:column;
+  gap:0.75rem;
+  transition:background 130ms ease-out;
+  position:relative;
+}
+.step:hover{background:var(--surface-raised)}
+.step__num{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  color:var(--amber);
+  font-weight:600;
+  letter-spacing:0.08em;
+}
+.step__icon{
+  width:32px;
+  height:32px;
+  color:var(--ink-secondary);
+}
+.step__title{
+  font-family:var(--font-display);
+  font-size:1.125rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:-0.01em;
+  line-height:1.1;
+  color:var(--ink);
+}
+.step__desc{
+  font-size:0.8125rem;
+  line-height:1.55;
+  color:var(--ink-secondary);
+}
+.step__time{
+  font-family:var(--font-mono);
+  font-size:0.625rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  margin-top:auto;
+  padding-top:0.75rem;
+  border-top:1px solid var(--line);
+}
+
+/* ── Final CTA ──────────────────────────────────────────────────── */
+.final-cta{
+  padding:var(--space-2xl) 0;
+  border-bottom:1px solid var(--line);
+}
+.final-cta__inner{
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:var(--space-2xl);
+  align-items:center;
+}
+.final-cta__headline{
+  font-family:var(--font-display);
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:-0.03em;
+  line-height:0.95;
+  color:var(--ink);
+  margin-bottom:var(--space-m);
+}
+.final-cta__headline .amber{color:var(--amber)}
+.final-cta__body{
+  font-size:1.0625rem;
+  color:var(--ink-secondary);
+  max-width:48ch;
+  line-height:1.55;
+}
+
+.final-cta__card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:var(--space-l);
+}
+.final-cta__card-title{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  margin-bottom:var(--space-s);
+}
+.final-cta__card-headline{
+  font-family:var(--font-display);
+  font-size:1.5rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:-0.01em;
+  line-height:1.1;
+  color:var(--ink);
+  margin-bottom:var(--space-s);
+}
+.final-cta__card-list{
+  list-style:none;
+  margin-bottom:var(--space-l);
+}
+.final-cta__card-list li{
+  font-size:0.875rem;
+  color:var(--ink-secondary);
+  padding:0.5rem 0;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:0.625rem;
+}
+.final-cta__card-list li:last-child{border-bottom:none}
+.final-cta__card-list svg{width:16px;height:16px;color:var(--amber);flex-shrink:0}
+.final-cta__card-list strong{color:var(--ink);font-weight:600}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.footer{
+  padding:var(--space-xl) 0;
+  background:var(--bg-deep);
+}
+.footer__grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:var(--space-xl);
+  margin-bottom:var(--space-xl);
+}
+.footer__brand-name{
+  font-family:var(--font-display);
+  font-size:1.125rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.02em;
+  color:var(--ink);
+  margin-bottom:0.5rem;
+}
+.footer__brand-sub{
+  font-size:0.8125rem;
+  color:var(--ink-secondary);
+  max-width:32ch;
+  line-height:1.55;
+}
+.footer__col-title{
+  font-family:var(--font-mono);
+  font-size:0.625rem;
+  color:var(--ink-muted);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  margin-bottom:0.75rem;
+}
+.footer__col a{
+  display:block;
+  font-size:0.8125rem;
+  color:var(--ink-secondary);
+  padding:0.25rem 0;
+  transition:color 130ms ease-out;
+}
+.footer__col a:hover{color:var(--amber)}
+.footer__bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:var(--space-l);
+  border-top:1px solid var(--line);
+  flex-wrap:wrap;
+  gap:0.75rem;
+}
+.footer__copy{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  color:var(--ink-muted);
+  letter-spacing:0.04em;
+}
+.footer__sheet{
+  font-family:var(--font-mono);
+  font-size:0.6875rem;
+  color:var(--ink-muted);
+  letter-spacing:0.04em;
+}
+
+/* ── Mobile nav ─────────────────────────────────────────────────── */
+.mobile-nav-toggle{
+  display:none;
+  width:36px;
+  height:36px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  color:var(--ink);
+  cursor:pointer;
+  border-radius:var(--r);
+  align-items:center;
+  justify-content:center;
+}
+.mobile-nav-toggle:active{transform:scale(0.97)}
+.mobile-nav-toggle svg{width:18px;height:18px}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media(max-width:960px){
+  .hero__grid{grid-template-columns:1fr;gap:var(--space-xl)}
+  .principle__grid{grid-template-columns:1fr;gap:var(--space-l)}
+  .final-cta__inner{grid-template-columns:1fr;gap:var(--space-l)}
+  .workorder__steps{grid-template-columns:repeat(2,1fr)}
+  .footer__grid{grid-template-columns:1fr 1fr;gap:var(--space-l)}
+  .service{grid-template-columns:auto 1fr;gap:1rem}
+  .service__desc,.service__link{grid-column:1/-1}
+  .service--primary{grid-template-columns:auto 1fr}
+}
+
+@media(max-width:640px){
+  :root{--gutter:1.25rem;--space-2xl:4rem;--space-xl:2.5rem}
+  .titleblock{grid-template-columns:auto 1fr auto;gap:0.75rem}
+  .titleblock__name{font-size:0.9375rem}
+  .titleblock__sub{font-size:0.5625rem}
+  .titleblock__nav{display:none}
+  .titleblock__nav.open{
+    display:flex;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    flex-direction:column;
+    background:var(--bg-deep);
+    border-bottom:1px solid var(--line);
+    padding:1rem 1.25rem;
+    gap:0.5rem;
+  }
+  .titleblock__nav.open a{padding:0.625rem 0;border-bottom:1px solid var(--line)}
+  .mobile-nav-toggle{display:flex}
+  .workorder__steps{grid-template-columns:1fr}
+  .workorder__header{grid-template-columns:1fr 1fr;gap:0.75rem}
+  .workorder__header > *:nth-child(3),
+  .workorder__header > *:nth-child(4){display:none}
+  .footer__grid{grid-template-columns:1fr}
+  .footer__bottom{flex-direction:column;align-items:flex-start}
+  .hero__meta{gap:1.25rem;flex-wrap:wrap}
+  .hero__meta-item{min-width:calc(50% - 1.25rem)}
+  .loadcalc__bar{width:50px}
+  .loadcalc__header{grid-template-columns:1fr auto auto;gap:0.5rem;padding:0.625rem 0.875rem}
+  .loadcalc__header .loadcalc__col-label:nth-child(4){display:none}
+  .loadcalc__row{grid-template-columns:1fr auto auto;gap:0.5rem;padding:0.5rem 0.875rem}
+  .loadcalc__row .loadcalc__status{display:none}
+  .loadcalc__row--constraint{padding-left:calc(0.875rem - 3px)}
+  .service{padding:var(--space-m)}
+  .hero__headline{font-size:2.25rem}
+  .hero__actions{flex-direction:column;align-items:stretch}
+  .hero__actions .btn{width:100%;justify-content:center}
+  .constraint-diagram{padding:var(--space-s)}
+  .constraint-diagram__svg{min-width:0}
+  .sec-heading{flex-wrap:wrap;gap:0.5rem}
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  .hero__headline .strike::after{transform:scaleX(1);animation:none}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     DESIGN DIRECTION CONTRACT
+
+     THESIS: This surface owns the offset calculation chart — the trades'
+     reference card where one value determines whether the conduit fits.
+     It refuses the centered hero + 3-card feature grid that every B2B
+     consulting site ships.
+
+     OWN-WORLD: Deep navy blueprint ground with a real graph-paper grid.
+     Amber caution-yellow accent (conduit and safety markings, not AI blue).
+     Oswald condensed display for architectural lettering; JetBrains Mono
+     only for tabular data. The 6-vector scorecard is a load calculation
+     table with the constraint flagged in alert red. Sections are plan-sheet
+     references (S-01, S-02) that carry navigation meaning.
+
+     STORY: The visitor sees their business laid out as a diagnostic sheet —
+     six vectors scored, one flagged as the binding constraint. They
+     understand that growth has a single addressable bottleneck, believe
+     MAF can find and fix it because the diagnostic is free and specific,
+     and take the scorecard.
+
+     FIRST VIEWPORT: Left column holds the headline at architectural scale
+     ("We find what's blocking your growth — and fix it"), sub-copy, and
+     primary action. Right column holds the load calculation table — six
+     vectors with bars and scores, Cash Flow flagged as the constraint.
+     The radar gauge cluster sits below the table. Title block (plan sheet
+     header) is sticky at top.
+
+     FORM: Candidate 7 from the grounded list — conduit bending table /
+     offset calculation chart. Dice-assigned (index 7). Staging challenger
+     (type-as-architecture) incorporated as the title-block scale treatment.
+     Concept-seed key: surface/persuade, assigned index 7.
+
+     FINISH: unreviewed and undocumented is unfinished; this build ends with
+     the finish review, the verdict, and DESIGN.md
+     ═══════════════════════════════════════════════════════════════ -->
+
+<!-- ── Title block (plan sheet header) ──────────────────────────── -->
+<header class="titleblock" role="banner">
+  <div class="titleblock__mark">
+    <!-- Custom logo: MAF as a stamped inspection mark -->
+    <svg class="titleblock__logo" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <rect x="1" y="1" width="34" height="34" rx="2" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M8 26V14L13 20L18 14V26" stroke="var(--amber)" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
+      <path d="M22 26V14L28 26V14" stroke="var(--amber)" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
+      <line x1="6" y1="30" x2="30" y2="30" stroke="var(--amber)" stroke-width="1" opacity="0.5"/>
+    </svg>
+    <div>
+      <div class="titleblock__name">Malwa Asset Firm</div>
+      <div class="titleblock__sub">Growth Diagnostics &nbsp;·&nbsp; Sheet 01 of 01</div>
+    </div>
+  </div>
+
+  <nav class="titleblock__nav" id="nav" aria-label="Primary navigation">
+    <a href="#services">Services</a>
+    <a href="#method">The Method</a>
+    <a href="#start">How You Start</a>
+    <a href="https://scorecard.malwaassetfirm.com" target="_blank" rel="noopener">Scorecard</a>
+  </nav>
+
+  <div class="titleblock__actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light or dark mode" title="Toggle theme">
+      <svg id="iconMoon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M13.5 8.5A5.5 5.5 0 0 1 7.5 2.5a5.5 5.5 0 1 0 6 6z"/>
+      </svg>
+      <svg id="iconSun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none">
+        <circle cx="8" cy="8" r="3"/>
+        <line x1="8" y1="1" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="15"/>
+        <line x1="1" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="15" y2="8"/>
+        <line x1="3.05" y1="3.05" x2="4.46" y2="4.46"/><line x1="11.54" y1="11.54" x2="12.95" y2="12.95"/>
+        <line x1="3.05" y1="12.95" x2="4.46" y2="11.54"/><line x1="11.54" y1="4.46" x2="12.95" y2="3.05"/>
+      </svg>
+    </button>
+    <button class="mobile-nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="2" y1="5" x2="16" y2="5"/><line x1="2" y1="9" x2="16" y2="9"/><line x1="2" y1="13" x2="16" y2="13"/>
+      </svg>
+    </button>
+    <a href="https://scorecard.malwaassetfirm.com" target="_blank" rel="noopener" class="btn btn--primary">Run the Scorecard</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO — the calculation sheet
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="container">
+    <div class="hero__sheet-ref">
+      <span><span class="dot"></span> DIAGNOSTIC SHEET</span>
+      <span>REV 2026.07</span>
+      <span>SCALE: 1:1</span>
+    </div>
+
+    <div class="hero__grid">
+      <!-- Left: headline + action -->
+      <div>
+        <h1 class="hero__headline" id="hero-heading">
+          We find what's<br>
+          <span class="strike">blocking</span> your growth<br>
+          — and <span class="amber">fix it.</span>
+        </h1>
+
+        <p class="hero__sub">
+          Most service businesses don't have ten problems. They have one —
+          the constraint that holds everything else back. A free 10-minute
+          diagnostic finds it. Then we deploy against it.
+        </p>
+
+        <div class="hero__actions">
+          <a href="https://scorecard.malwaassetfirm.com" target="_blank" rel="noopener" class="btn btn--primary">
+            Run the Free Scorecard
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
+          </a>
+          <a href="#method" class="btn btn--ghost">How the method works</a>
+        </div>
+
+        <div class="hero__meta">
+          <div class="hero__meta-item">
+            <span class="hero__meta-val">24</span>
+            <span class="hero__meta-key">Questions</span>
+          </div>
+          <div class="hero__meta-item">
+            <span class="hero__meta-val">10 min</span>
+            <span class="hero__meta-key">To Complete</span>
+          </div>
+          <div class="hero__meta-item">
+            <span class="hero__meta-val">6</span>
+            <span class="hero__meta-key">Vectors Scored</span>
+          </div>
+          <div class="hero__meta-item">
+            <span class="hero__meta-val">1</span>
+            <span class="hero__meta-key">Constraint Found</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: load calculation table + radar -->
+      <div>
+        <div class="loadcalc" role="figure" aria-label="6-vector growth diagnostic results">
+          <div class="loadcalc__header">
+            <div class="loadcalc__title">Growth Constraint Analysis</div>
+            <div class="loadcalc__col-label">Score</div>
+            <div class="loadcalc__col-label">Range</div>
+            <div class="loadcalc__col-label">Status</div>
+          </div>
+
+          <div class="loadcalc__body">
+            <div class="loadcalc__row">
+              <div class="loadcalc__vector">
+                <svg class="loadcalc__vector-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M3 17h14M5 17V9l5-4 5 4v8M9 17v-4h2v4"/>
+                </svg>
+                <span class="loadcalc__vector-name">Demand</span>
+              </div>
+              <div class="loadcalc__score">65</div>
+              <div class="loadcalc__bar"><div class="loadcalc__bar-fill loadcalc__bar-fill--pass" style="width:65%"></div></div>
+              <div class="loadcalc__status">Nominal</div>
+            </div>
+
+            <div class="loadcalc__row">
+              <div class="loadcalc__vector">
+                <svg class="loadcalc__vector-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M3 10l3-3 3 3 3-6 3 6 2-2"/><circle cx="3" cy="10" r="1"/><circle cx="17" cy="8" r="1"/>
+                </svg>
+                <span class="loadcalc__vector-name">Conversion</span>
+              </div>
+              <div class="loadcalc__score">48</div>
+              <div class="loadcalc__bar"><div class="loadcalc__bar-fill loadcalc__bar-fill--warn" style="width:48%"></div></div>
+              <div class="loadcalc__status">Watch</div>
+            </div>
+
+            <div class="loadcalc__row">
+              <div class="loadcalc__vector">
+                <svg class="loadcalc__vector-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="5" width="14" height="10" rx="1"/><path d="M3 9h14M7 5v10M13 5v10"/>
+                </svg>
+                <span class="loadcalc__vector-name">Delivery</span>
+              </div>
+              <div class="loadcalc__score">72</div>
+              <div class="loadcalc__bar"><div class="loadcalc__bar-fill loadcalc__bar-fill--pass" style="width:72%"></div></div>
+              <div class="loadcalc__status">Nominal</div>
+            </div>
+
+            <div class="loadcalc__row loadcalc__row--constraint">
+              <div class="loadcalc__vector">
+                <svg class="loadcalc__vector-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="10" cy="10" r="6"/><path d="M10 6v4l2 2"/>
+                </svg>
+                <span class="loadcalc__vector-name">Cash Flow</span>
+              </div>
+              <div class="loadcalc__score">38</div>
+              <div class="loadcalc__bar"><div class="loadcalc__bar-fill loadcalc__bar-fill--alert" style="width:38%"></div></div>
+              <div class="loadcalc__status">Constraint</div>
+            </div>
+
+            <div class="loadcalc__row">
+              <div class="loadcalc__vector">
+                <svg class="loadcalc__vector-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M10 4C6 4 3 7 3 11s3 7 7 7 7-3 7-7-3-7-7-7z M10 4v14 M4 8h12 M4 14h12"/>
+                </svg>
+                <span class="loadcalc__vector-name">Retention</span>
+              </div>
+              <div class="loadcalc__score">55</div>
+              <div class="loadcalc__bar"><div class="loadcalc__bar-fill loadcalc__bar-fill--warn" style="width:55%"></div></div>
+              <div class="loadcalc__status">Watch</div>
+            </div>
+
+            <div class="loadcalc__row">
+              <div class="loadcalc__vector">
+                <svg class="loadcalc__vector-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 16V8a6 6 0 0 1 12 0v8M4 16h12M8 16v-3a2 2 0 0 1 4 0v3"/>
+                </svg>
+                <span class="loadcalc__vector-name">Support</span>
+              </div>
+              <div class="loadcalc__score">80</div>
+              <div class="loadcalc__bar"><div class="loadcalc__bar-fill loadcalc__bar-fill--pass" style="width:80%"></div></div>
+              <div class="loadcalc__status">Nominal</div>
+            </div>
+          </div>
+
+          <div class="loadcalc__footer">
+            <div class="loadcalc__footer-label">Binding Constraint → Cash Flow (38)</div>
+            <div class="loadcalc__footer-value">DEPLOY AGAINST THIS</div>
+          </div>
+        </div>
+
+        <!-- Radar gauge cluster -->
+        <div class="radar-wrap" style="margin-top:1rem" aria-hidden="true">
+          <div class="radar-wrap__title">Vector Readout — Sample Profile</div>
+          <svg class="radar-svg" viewBox="0 0 320 300" fill="none">
+            <!-- Graticule rings -->
+            <polygon points="160,30 267,90 267,210 160,270 53,210 53,90" stroke="var(--grid-major)" stroke-width="1" fill="none"/>
+            <polygon points="160,58 244,103 244,197 160,242 76,197 76,103" stroke="var(--grid-minor)" stroke-width="1" fill="none"/>
+            <polygon points="160,86 221,116 221,184 160,214 99,184 99,116" stroke="var(--grid-minor)" stroke-width="1" fill="none"/>
+            <polygon points="160,114 198,129 198,171 160,186 122,171 122,129" stroke="var(--grid-minor)" stroke-width="1" fill="none"/>
+
+            <!-- Axis lines -->
+            <line x1="160" y1="150" x2="160" y2="30" stroke="var(--grid-minor)" stroke-width="1"/>
+            <line x1="160" y1="150" x2="267" y2="90" stroke="var(--grid-minor)" stroke-width="1"/>
+            <line x1="160" y1="150" x2="267" y2="210" stroke="var(--grid-minor)" stroke-width="1"/>
+            <line x1="160" y1="150" x2="160" y2="270" stroke="var(--grid-minor)" stroke-width="1"/>
+            <line x1="160" y1="150" x2="53" y2="210" stroke="var(--grid-minor)" stroke-width="1"/>
+            <line x1="160" y1="150" x2="53" y2="90" stroke="var(--grid-minor)" stroke-width="1"/>
+
+            <!-- Score polygon: Demand 65, Conversion 48, Delivery 72, Cash Flow 38, Retention 55, Support 80 -->
+            <!-- Demand (top): 65% of 120px → 150 - 78 = 72 -->
+            <polygon points="160,72 229.1,99.6 236.6,194.4 160,204 79.1,194.4 90.9,99.6"
+              fill="var(--amber-glow)" stroke="var(--amber)" stroke-width="1.5" stroke-linejoin="miter"/>
+
+            <!-- Data points -->
+            <circle cx="160" cy="72" r="3" fill="var(--amber)"/>
+            <circle cx="229.1" cy="99.6" r="3" fill="var(--amber)"/>
+            <circle cx="236.6" cy="194.4" r="3" fill="var(--amber)"/>
+            <!-- Cash Flow — the constraint, highlighted -->
+            <circle cx="160" cy="204" r="5" fill="var(--alert)" stroke="var(--bg)" stroke-width="2"/>
+            <circle cx="79.1" cy="194.4" r="3" fill="var(--amber)"/>
+            <circle cx="90.9" cy="99.6" r="3" fill="var(--amber)"/>
+
+            <!-- Labels -->
+            <text x="160" y="20" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--ink-secondary)">DEMAND</text>
+            <text x="278" y="88" text-anchor="start" font-family="var(--font-mono)" font-size="10" fill="var(--ink-secondary)">CONV.</text>
+            <text x="278" y="216" text-anchor="start" font-family="var(--font-mono)" font-size="10" fill="var(--ink-secondary)">DELIV.</text>
+            <text x="160" y="290" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--alert)" font-weight="600">CASH FLOW</text>
+            <text x="42" y="216" text-anchor="end" font-family="var(--font-mono)" font-size="10" fill="var(--ink-secondary)">RETENT.</text>
+            <text x="42" y="88" text-anchor="end" font-family="var(--font-mono)" font-size="10" fill="var(--ink-secondary)">SUPP.</text>
+
+            <!-- Scale ticks on top axis -->
+            <text x="168" y="116" font-family="var(--font-mono)" font-size="8" fill="var(--ink-muted)">25</text>
+            <text x="168" y="86" font-family="var(--font-mono)" font-size="8" fill="var(--ink-muted)">50</text>
+            <text x="168" y="56" font-family="var(--font-mono)" font-size="8" fill="var(--ink-muted)">75</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SERVICES — spec sheet layout
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="services" id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="sec-heading">
+      <span class="sec-heading__ref">S-01</span>
+      <h2 class="sec-heading__title" id="services-heading">What We Do</h2>
+    </div>
+
+    <div class="services__list">
+      <!-- Primary: MAF Deploy -->
+      <article class="service service--primary">
+        <div class="service__spec">
+          <span class="service__spec-num">01</span>
+          <span class="service__spec-tag">Primary</span>
+        </div>
+        <div>
+          <h3 class="service__name">MAF Deploy</h3>
+          <div class="service__tagline">AI Operations · Done For You</div>
+        </div>
+        <div class="service__desc">
+          AI agents that run your back office — scheduling, invoicing, lead
+          follow-up, customer calls. Built on top of the systems you already
+          use: <strong>ServiceTitan, QuickBooks, your phone system, your CRM.</strong>
+          Not software you buy. Work that gets done.
+          <a href="https://deploy.malwaassetfirm.com" target="_blank" rel="noopener" class="service__link">
+            See Deploy
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
+          </a>
+        </div>
+        <div></div>
+      </article>
+
+      <!-- Consulting -->
+      <article class="service">
+        <div class="service__spec">
+          <span class="service__spec-num">02</span>
+          <span class="service__spec-tag">Advisory</span>
+        </div>
+        <div>
+          <h3 class="service__name">Consulting</h3>
+          <div class="service__tagline">Growth & Operations Diagnosis</div>
+        </div>
+        <div class="service__desc">
+          Pricing, delivery capacity, cash flow, team structure. We diagnose
+          what's actually holding the business back and build the plan to
+          fix it. <strong>You get a specific roadmap, not a deck.</strong>
+        </div>
+        <div>
+          <a href="mailto:garry@malwaassetfirm.com" class="service__link">
+            Talk to Garry
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- M&A Advisory -->
+      <article class="service">
+        <div class="service__spec">
+          <span class="service__spec-num">03</span>
+          <span class="service__spec-tag">Transition</span>
+        </div>
+        <div>
+          <h3 class="service__name">M&amp;A Advisory</h3>
+          <div class="service__tagline">Valuation · Readiness · Deal Execution</div>
+        </div>
+        <div class="service__desc">
+          For owners ready to transition. Valuation, readiness assessment,
+          deal execution. <strong>We've sat on both sides of the table</strong> —
+          buyer and seller — so the advice is grounded in what actually
+          happens in a transaction, not theory.
+        </div>
+        <div>
+          <a href="mailto:garry@malwaassetfirm.com?subject=M%26A%20Advisory" class="service__link">
+            Start the conversation
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     THE METHOD — editorial
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="principle" id="method" aria-labelledby="method-heading">
+  <div class="container">
+    <div class="sec-heading">
+      <span class="sec-heading__ref">S-02</span>
+      <h2 class="sec-heading__title" id="method-heading">The Method</h2>
+    </div>
+
+    <div class="principle__grid">
+      <div class="principle__body">
+        <p>
+          Every business has one constraint. Not five priorities, not a
+          strategic plan with twelve initiatives — <strong>one thing</strong>
+          that, if fixed, unlocks everything else.
+        </p>
+        <p>
+          The phone isn't ringing enough. Or it's ringing but calls aren't
+          converting. Or you're selling but can't deliver on time. Or you're
+          delivering but cash flow chokes the next hire. The constraint sits
+          somewhere in that chain — <span class="amber-text">and it's
+          findable.</span>
+        </p>
+        <p>
+          The 6-vector scorecard maps your business across demand, conversion,
+          delivery, cash flow, retention, and support. Each vector gets a
+          score. The lowest score is your binding constraint — the one that
+          holds all the others back. Fix it first. Everything else gets
+          easier.
+        </p>
+        <p>
+          <strong>This isn't a dashboard for you to monitor.</strong> It's a
+          diagnosis. We run it, we read it, we tell you what it means in
+          plain language, and we deploy against what it finds. No software
+          to learn. No platform to adopt. The diagnostic is free. The work
+          is done for you.
+        </p>
+      </div>
+
+      <!-- Constraint diagram -->
+      <div class="constraint-diagram">
+        <div class="constraint-diagram__title">FIG. 01 — Constraint Chain</div>
+        <svg class="constraint-diagram__svg" viewBox="0 0 400 280" fill="none">
+          <!-- Chain of vectors -->
+          <g stroke="var(--line)" stroke-width="1.5" fill="none">
+            <!-- Demand → Conversion -->
+            <path d="M60 40 L120 40"/>
+            <polygon points="120,40 115,37 115,43" fill="var(--line)"/>
+            <!-- Conversion → Delivery -->
+            <path d="M180 40 L240 40"/>
+            <polygon points="240,40 235,37 235,43" fill="var(--line)"/>
+            <!-- Delivery → Cash Flow (CONSTRAINT) -->
+            <path d="M300 40 L340 40" stroke="var(--alert)" stroke-width="2"/>
+            <polygon points="340,40 335,36 335,44" fill="var(--alert)"/>
+            <!-- Cash Flow → back to Demand (feedback loop) -->
+            <path d="M370 60 Q370 140 200 140 Q60 140 60 60" stroke="var(--alert)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polygon points="60,60 57,66 63,66" fill="var(--alert)"/>
+          </g>
+
+          <!-- Vector boxes -->
+          <g font-family="var(--font-mono)" font-size="9" text-anchor="middle">
+            <rect x="10" y="25" width="50" height="30" rx="2" fill="var(--surface-raised)" stroke="var(--line)" stroke-width="1"/>
+            <text x="35" y="44" fill="var(--ink-secondary)">DEMAND</text>
+
+            <rect x="130" y="25" width="50" height="30" rx="2" fill="var(--surface-raised)" stroke="var(--line)" stroke-width="1"/>
+            <text x="155" y="44" fill="var(--ink-secondary)">CONVERT</text>
+
+            <rect x="250" y="25" width="50" height="30" rx="2" fill="var(--surface-raised)" stroke="var(--line)" stroke-width="1"/>
+            <text x="275" y="44" fill="var(--ink-secondary)">DELIVER</text>
+
+            <!-- Constraint box -->
+            <rect x="345" y="22" width="50" height="36" rx="2" fill="var(--alert-dim)" stroke="var(--alert)" stroke-width="2"/>
+            <text x="370" y="44" fill="var(--alert)" font-weight="600">CASH</text>
+          </g>
+
+          <!-- Annotation -->
+          <g font-family="var(--font-mono)" font-size="8">
+            <text x="370" y="80" text-anchor="middle" fill="var(--alert)">↑ BINDING CONSTRAINT</text>
+            <text x="370" y="92" text-anchor="middle" fill="var(--ink-muted)">Score: 38 / 100</text>
+          </g>
+
+          <!-- Result -->
+          <g>
+            <line x1="200" y1="160" x2="200" y2="200" stroke="var(--line)" stroke-width="1.5"/>
+            <polygon points="200,200 197,195 203,195" fill="var(--line)"/>
+            <text x="200" y="180" text-anchor="end" font-family="var(--font-mono)" font-size="8" fill="var(--ink-muted)" transform="rotate(-90 200 180)">FIX THIS FIRST</text>
+          </g>
+
+          <!-- Outcome boxes -->
+          <g font-family="var(--font-mono)" font-size="9" text-anchor="middle">
+            <rect x="100" y="210" width="90" height="32" rx="2" fill="var(--pass-dim)" stroke="var(--pass)" stroke-width="1"/>
+            <text x="145" y="231" fill="var(--pass)">UNLOCKED</text>
+
+            <rect x="210" y="210" width="90" height="32" rx="2" fill="var(--surface-raised)" stroke="var(--line)" stroke-width="1"/>
+            <text x="255" y="231" fill="var(--ink-secondary)">EASIER</text>
+
+            <rect x="320" y="210" width="70" height="32" rx="2" fill="var(--surface-raised)" stroke="var(--line)" stroke-width="1"/>
+            <text x="355" y="231" fill="var(--ink-secondary)">GROWTH</text>
+          </g>
+
+          <!-- Connecting arrows -->
+          <g stroke="var(--line)" stroke-width="1" fill="none">
+            <path d="M190 242 L200 260 L210 242" />
+            <path d="M300 242 L310 260 L320 242" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HOW YOU START — work order
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="journey" id="start" aria-labelledby="start-heading">
+  <div class="container">
+    <div class="sec-heading">
+      <span class="sec-heading__ref">S-03</span>
+      <h2 class="sec-heading__title" id="start-heading">How You Start</h2>
+    </div>
+
+    <div class="workorder">
+      <div class="workorder__header">
+        <span class="workorder__header-label">Work Order</span>
+        <span class="workorder__header-val">WO-2026-MAF</span>
+        <span class="workorder__header-val">Status: OPEN</span>
+        <span class="workorder__header-val">Priority: STANDARD</span>
+      </div>
+
+      <div class="workorder__steps">
+        <div class="step">
+          <span class="step__num">STEP 01</span>
+          <!-- Icon: clipboard with checkmark -->
+          <svg class="step__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="6" y="5" width="20" height="24" rx="2"/><path d="M11 5v3h10V5"/><path d="M11 16l3 3 7-7"/>
+          </svg>
+          <h3 class="step__title">Run the Scorecard</h3>
+          <p class="step__desc">
+            24 questions across six vectors. No login, no email wall during
+            the assessment. You get your scores immediately.
+          </p>
+          <div class="step__time">10 minutes · Free</div>
+        </div>
+
+        <div class="step">
+          <span class="step__num">STEP 02</span>
+          <!-- Icon: phone call -->
+          <svg class="step__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M7 6C7 5 8 4 9 4h3l2 6-3 2c1 3 3 5 6 6l2-3 6 2v3c0 1-1 2-2 2C16 24 7 17 7 6z"/>
+          </svg>
+          <h3 class="step__title">Analysis Call</h3>
+          <p class="step__desc">
+            We read your scores, identify the binding constraint, and tell
+            you what it means — whether or not you hire us.
+          </p>
+          <div class="step__time">30 minutes · Free</div>
+        </div>
+
+        <div class="step">
+          <span class="step__num">STEP 03</span>
+          <!-- Icon: magnifying glass on document -->
+          <svg class="step__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="5" y="4" width="16" height="20" rx="1"/><path d="M8 9h10M8 13h10M8 17h6"/><circle cx="23" cy="21" r="5"/><path d="M26.5 24.5L29 27"/>
+          </svg>
+          <h3 class="step__title">Deployment Audit</h3>
+          <p class="step__desc">
+            Deep dive into the constraint. We map your current systems,
+            quantify the gap, and scope the fix. Specific, not theoretical.
+          </p>
+          <div class="step__time">1 week · Engaged</div>
+        </div>
+
+        <div class="step">
+          <span class="step__num">STEP 04</span>
+          <!-- Icon: gear with arrow -->
+          <svg class="step__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M16 10v4l3 2"/><circle cx="16" cy="16" r="10"/><path d="M16 6v2M16 24v2M6 16h2M24 16h2M9 9l1.5 1.5M21.5 21.5L23 23M23 9l-1.5 1.5M10.5 21.5L9 23"/>
+          </svg>
+          <h3 class="step__title">Deploy Against It</h3>
+          <p class="step__desc">
+            We implement the fix — AI agents, operational changes, or both.
+            Measurable results within 60 days, or a refund. Day 90 off-ramp.
+          </p>
+          <div class="step__time">60 days · Guaranteed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FINAL CTA — a close, not a shout
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="final-cta" aria-labelledby="final-heading">
+  <div class="container">
+    <div class="final-cta__inner">
+      <div>
+        <h2 class="final-cta__headline" id="final-heading">
+          The constraint<br>is findable.<br>
+          <span class="amber">The fix is deployable.</span>
+        </h2>
+        <p class="final-cta__body">
+          You built a company from your craft. If growth stalled, something
+          specific is doing it — and it's not work ethic, or effort, or
+          another software tool. It's one thing. Find it in ten minutes.
+        </p>
+      </div>
+
+      <div class="final-cta__card">
+        <div class="final-cta__card-title">No-Risk Engagement</div>
+        <div class="final-cta__card-headline">The guarantee is real.</div>
+        <ul class="final-cta__card-list">
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>
+            <span><strong>Free diagnostic</strong> — 24 questions, 10 minutes</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>
+            <span><strong>Free analysis call</strong> — whether or not you hire us</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>
+            <span><strong>60-day results</strong> — or refund every month we miss</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>
+            <span><strong>Day 90 off-ramp</strong> — setup fees refundable</span>
+          </li>
+        </ul>
+        <a href="https://scorecard.malwaassetfirm.com" target="_blank" rel="noopener" class="btn btn--primary" style="width:100%;justify-content:center">
+          Run the Scorecard
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__brand-name">Malwa Asset Firm</div>
+        <p class="footer__brand-sub">
+          Boutique growth consulting for service businesses doing $1M–$25M.
+          We find the one constraint limiting your growth — and fix it.
+        </p>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__col-title">Services</div>
+        <a href="https://deploy.malwaassetfirm.com" target="_blank" rel="noopener">MAF Deploy</a>
+        <a href="mailto:garry@malwaassetfirm.com">Consulting</a>
+        <a href="mailto:garry@malwaassetfirm.com?subject=M%26A%20Advisory">M&amp;A Advisory</a>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__col-title">Tools</div>
+        <a href="https://scorecard.malwaassetfirm.com" target="_blank" rel="noopener">6-Vector Scorecard</a>
+        <a href="https://portal.malwaassetfirm.com" target="_blank" rel="noopener">Client Portal</a>
+      </div>
+
+      <div class="footer__col">
+        <div class="footer__col-title">Contact</div>
+        <a href="mailto:garry@malwaassetfirm.com">garry@malwaassetfirm.com</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2026 Malwa Asset Firm · All rights reserved</span>
+      <span class="footer__sheet">SHEET 01/01 · REV 2026.07 · DRAWN BY G. SINGH</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Theme toggle ──────────────────────────────────────────────────
+(function(){
+  var root = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+  var iconMoon = document.getElementById('iconMoon');
+  var iconSun = document.getElementById('iconSun');
+
+  function setTheme(theme){
+    root.setAttribute('data-theme', theme);
+    try{ localStorage.setItem('maf-theme', theme); }catch(e){}
+    if(theme === 'light'){
+      iconMoon.style.display = 'none';
+      iconSun.style.display = 'block';
+    } else {
+      iconMoon.style.display = 'block';
+      iconSun.style.display = 'none';
+    }
+  }
+
+  var saved = null;
+  try{ saved = localStorage.getItem('maf-theme'); }catch(e){}
+  if(saved){ setTheme(saved); }
+
+  toggle.addEventListener('click', function(){
+    var current = root.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+})();
+
+// ── Mobile nav ────────────────────────────────────────────────────
+(function(){
+  var btn = document.getElementById('navToggle');
+  var nav = document.getElementById('nav');
+
+  if(!btn || !nav) return;
+
+  btn.addEventListener('click', function(){
+    var isOpen = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  nav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+
+// ── Animate scorecard bars on scroll into view ────────────────────
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var bars = document.querySelectorAll('.loadcalc__bar-fill');
+  bars.forEach(function(bar){
+    var w = bar.style.width;
+    bar.style.width = '0';
+    bar.dataset.targetWidth = w;
+  });
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var bar = entry.target;
+        bar.style.width = bar.dataset.targetWidth;
+        observer.unobserve(bar);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  bars.forEach(function(bar){ observer.observe(bar); });
+})();
+
+// ── Animate radar polygon on scroll ───────────────────────────────
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var radar = document.querySelector('.radar-svg polygon[fill]');
+  if(!radar) return;
+
+  var points = radar.getAttribute('points');
+  var center = '160,150 160,150 160,150 160,150 160,150 160,150';
+
+  radar.setAttribute('points', center);
+  radar.style.transition = 'opacity 600ms ease-out';
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        // Animate by transitioning the points attribute via requestAnimationFrame
+        var target = points.split(' ').map(function(p){
+          return p.split(',').map(Number);
+        });
+        var start = center.split(' ').map(function(p){
+          return p.split(',').map(Number);
+        });
+        var duration = 800;
+        var startTime = null;
+
+        function ease(t){ return 1 - Math.pow(1 - t, 3); }
+
+        function frame(ts){
+          if(!startTime) startTime = ts;
+          var progress = Math.min((ts - startTime) / duration, 1);
+          var eased = ease(progress);
+          var current = start.map(function(s, i){
+            return [
+              Math.round(s[0] + (target[i][0] - s[0]) * eased),
+              Math.round(s[1] + (target[i][1] - s[1]) * eased)
+            ].join(',');
+          }).join(' ');
+          radar.setAttribute('points', current);
+          if(progress < 1) requestAnimationFrame(frame);
+        }
+
+        requestAnimationFrame(frame);
+        observer.unobserve(radar);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(radar);
+})();
+</script>
+</body>
+</html>
